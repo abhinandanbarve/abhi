@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 /**
  * @author abhinandan
- * 
+ * Databse class
  */
 public class DataBase {
 	public Connection con;
