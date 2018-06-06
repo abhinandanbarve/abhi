@@ -26,6 +26,7 @@ public class LoginTest extends TestBase{
 		
 		loginPage.loginToApplication(config.getUserName(), config.getPassword());
 		boolean status = loginPage.verifySuccessLoginMsg();
+		loginPage.logoutFromToApplication();
 		if(status){
 		   log.info("login is sucessful");	
 		}

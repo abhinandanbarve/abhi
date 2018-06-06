@@ -23,7 +23,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
@@ -85,6 +85,7 @@ public class TestBase {
 	}
 	
 	
+	
 	//3.0.1
 	//FF:-47.0.2
 	//0.15
@@ -94,7 +95,7 @@ public class TestBase {
 				//https://github.com/mozilla/geckodriver/releases
 				System.out.println(System.getProperty("user.dir"));
 				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/drivers/geckodriver.exe");
-				driver = new FirefoxDriver();
+				//driver = new FirefoxDriver();
 			}
 			else if(browser.equalsIgnoreCase("chrome")){
 				//https://chromedriver.storage.googleapis.com/index.html
@@ -107,7 +108,7 @@ public class TestBase {
 			if(browser.equalsIgnoreCase("firefox")){
 				System.out.println(System.getProperty("user.dir"));
 				System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"/drivers/geckodriver");
-				driver = new FirefoxDriver();
+				//driver = new FirefoxDriver();
 			}
 			else if(browser.equalsIgnoreCase("chrome")){
 				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver");

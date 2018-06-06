@@ -30,9 +30,9 @@ public class Registration extends TestBase{
 		driver.get(config.getWebsite());
 		
 		loginPage = new LoginPage(driver);
-		loginPage.clickOnSignInLink();
-		loginPage.enterRegistrationEmail();
-		loginPage.clickOnCreateAnAccount();
+		//loginPage.clickOnSignInLink();
+		//loginPage.enterRegistrationEmail();
+		//loginPage.clickOnCreateAnAccount();
 		
 		register = new RegistrationPage(driver);
 		register.setMrRadioButton();

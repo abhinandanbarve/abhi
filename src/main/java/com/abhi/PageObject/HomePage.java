@@ -29,16 +29,18 @@ public class HomePage {
 	String CasualDresses = "Casual Dresses";
 
 	
-	@FindBy(xpath="//*[@id='block_top_menu']/ul/li[1]/a")
+	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")	
 	public WebElement womenMenu;
 	
-	@FindBy(xpath="//*[@id='block_top_menu']/ul/li[2]/a")
+	@FindBy(xpath="//*[@id='block_top_menu']")
 	public WebElement dressesMenu;
 	
 	
 	@FindBy(xpath="//*[@id='block_top_menu']/ul/li[3]/a")
 	public WebElement tshirtsMenu;
 
+	
+	
 	
 	public HomePage(WebDriver driver) {
 		this.driver = driver;

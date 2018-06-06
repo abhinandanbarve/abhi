@@ -1,28 +1,10 @@
-2018-06-04 22:55:01 INFO  TestBase:127 - loading config.properties
-2018-06-04 22:55:01 INFO  TestBase:132 - loading or.properties
-2018-06-04 22:55:01 INFO  TestBase:137 - loading homepage.properties
-2018-06-04 22:55:14 INFO  WaitHelper:33 - 20
-2018-06-04 22:55:14 INFO  WaitHelper:38 - 240
-2018-06-04 22:55:14 INFO  Registration:27 - com.abhi.registration.Registration started
-2018-06-04 22:55:33 INFO  WaitHelper:62 - element found...Sign in
-2018-06-04 22:55:35 INFO  LoginPage:57 - clicked on sign in link...
-2018-06-04 22:55:39 INFO  LoginPage:84 - entering registration email..1528145739752@gmail.com
-2018-06-04 22:55:47 INFO  WaitHelper:62 - element found...
-2018-06-04 22:55:47 INFO  WaitHelper:62 - element found...
-2018-06-04 22:55:47 INFO  RegistrationPage:103 - selecting mr checkbox..
-2018-06-04 22:55:47 INFO  RegistrationPage:113 - entering firstName..firstName
-2018-06-04 22:55:48 INFO  RegistrationPage:118 - entering lastname..lastname
-2018-06-04 22:55:48 INFO  RegistrationPage:128 - entering password..password
-2018-06-04 22:55:48 INFO  RegistrationPage:191 - entering address..address
-2018-06-04 22:55:50 INFO  RegistrationPage:176 - entering yourAddressFirstName..yourAddressFirstName
-2018-06-04 22:55:51 INFO  RegistrationPage:181 - entering yourAddressLastName..yourAddressLastName
-2018-06-04 22:55:52 INFO  RegistrationPage:186 - entering yourAddressCompany..yourAddressCompany
-2018-06-04 22:55:52 INFO  RegistrationPage:201 - entering yourAddressCity..yourAddressCity
-2018-06-04 22:55:53 INFO  RegistrationPage:206 - entering yourAddressState..Alaska
-2018-06-04 22:55:53 INFO  RegistrationPage:211 - entering yourAddressPostCode..99501
-2018-06-04 22:55:54 INFO  RegistrationPage:226 - entering mobilePhone..9999999999
-2018-06-04 22:55:54 INFO  RegistrationPage:231 - entering addressAlias..addressAlias
-2018-06-04 22:55:54 INFO  RegistrationPage:236 - clicked on registration..[[ChromeDriver: chrome on WIN8 (4a98f9b624b884a7dc75707c830becb6)] -> xpath: //*[@id='submitAccount']]
-2018-06-04 22:55:56 INFO  WaitHelper:62 - element found...ORDER HISTORY AND DETAILS
-2018-06-04 22:55:56 INFO  VerificationHelper:21 - Welcome to your account. Here you can manage all of your personal information and orders. is dispalyed
-2018-06-04 22:55:56 INFO  Registration:59 - Registration is sucessful
+2018-06-06 19:07:08 INFO  TestBase:128 - loading config.properties
+2018-06-06 19:07:08 INFO  TestBase:133 - loading or.properties
+2018-06-06 19:07:08 INFO  TestBase:138 - loading homepage.properties
+2018-06-06 19:07:11 INFO  WaitHelper:33 - 20
+2018-06-06 19:07:11 INFO  WaitHelper:38 - 240
+2018-06-06 19:07:11 INFO  LoginTest:21 - com.abhi.loginPage.LoginTest started
+2018-06-06 19:07:15 INFO  WaitHelper:62 - element found...
+2018-06-06 19:07:15 INFO  LoginPage:55 - entering user name fdfgd ergret rgrtt ....abbar
+2018-06-06 19:07:16 INFO  LoginPage:60 - entering password....abbar
+2018-06-06 19:07:16 INFO  LoginPage:65 - clicking on submit button...

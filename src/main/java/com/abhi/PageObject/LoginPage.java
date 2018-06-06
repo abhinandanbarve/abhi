@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.abhi.helper.Javascript.JavaScriptHelper;
 import com.abhi.helper.Logger.LoggerHelper;
 import com.abhi.helper.Wait.WaitHelper;
 import com.abhi.helper.genericHelper.GenericHelper;
@@ -21,46 +20,40 @@ import com.abhi.testBase.TestBase;
 public class LoginPage{
 	
 	WebDriver driver;
+	
 	private final Logger log = LoggerHelper.getLogger(LoginPage.class);
+	
 	WaitHelper waitHelper;
 	
-	@FindBy(xpath="//*[@id='header']/div[2]/div/div/nav/div[1]/a")
-	WebElement signin;
+	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")
+	WebElement userLink;
 	
-	@FindBy(xpath="//*[@id='email']")
-	WebElement emailAddress;
+	@FindBy(xpath="//*[@id=\"main-view\"]/form/div/div/div[2]/div/ul/li[1]/input")
+	WebElement userName;
+		
 	
-	@FindBy(xpath="//*[@id='passwd']")
+	@FindBy(xpath="//*[@id=\"main-view\"]/form/div/div/div[2]/div/ul/li[2]/input")
 	WebElement password;
 	
-	@FindBy(xpath="//*[@id='SubmitLogin']")
+	@FindBy(xpath="//*[@id=\"main-view\"]/form/div/div/div[2]/div/ul/li[4]/button")
 	WebElement submitLogin;
 	
-	@FindBy(xpath="//*[@id='center_column']/p")
-	WebElement successMsgObject;
+	@FindBy(xpath="//*[@id=\"aw-state-userName\"]/div/div[2]/aw-popup-panel/div/div/div/div/div/aw-popup-command-bar/aw-popup-command-cell[2]/li")
+	WebElement logout;
 	
-	@FindBy(xpath="//*[@id='email_create']")
-	WebElement registration;
-	
-	@FindBy(xpath="//*[@id='SubmitCreate']")
-	WebElement createAnAccount;
 	
 
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 		waitHelper = new WaitHelper(driver);
-		waitHelper.waitForElement(driver, signin,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, userName,new Config(TestBase.OR).getExplicitWait());
 	}
 	
-	public void clickOnSignInLink(){
-		log.info("clicked on sign in link...");
-		signin.click();
-	}
 	
-	public void enterEmailAddress(String emailAddress){
-		log.info("entering email address...."+emailAddress);
-		this.emailAddress.sendKeys(emailAddress);
+	public void enterUserName(String userName){
+		log.info("entering user name fdfgd ergret rgrtt ...."+userName);
+		this.userName.sendKeys(userName);
 	}
 	
 	public void enterPassword(String password){
@@ -70,31 +63,44 @@ public class LoginPage{
 	
 	public HomePage clickOnSubmitButton(){
 		log.info("clicking on submit button...");
-		new JavaScriptHelper(driver).scrollDownVertically();
+		//new JavaScriptHelper(driver).scrollDownVertically();
 		submitLogin.click();
 		return new HomePage(driver);
 	}
 	
 	public boolean verifySuccessLoginMsg(){
-		return new GenericHelper().isDisplayed(successMsgObject);
+		return new GenericHelper().isDisplayed(userLink);
 	}
+		
 	
-	public void enterRegistrationEmail(){
-		String email = System.currentTimeMillis()+"@gmail.com";
-		log.info("entering registration email.."+email);
-		registration.sendKeys(email);	
-	}
-	
-	public RegistrationPage clickOnCreateAnAccount(){
-		createAnAccount.click();
-		return new RegistrationPage(driver);
-	}
-	
-	public void loginToApplication(String emailAddress, String password){
-		clickOnSignInLink();
-		enterEmailAddress(emailAddress);
+	public void loginToApplication(String userName, String password){		
+		enterUserName(userName);
 		enterPassword(password);
 		clickOnSubmitButton();
 	}
+	
+	public void clickOnUserLink(){
+		log.info("clicked on user in link...");
+		userLink.click();
+	}
+	
+	public void clickOnLogoutButton(){
+		log.info("clicked on logout link...");
+		logout.click();
+	}
+	
+	
+	public void logoutFromToApplication(){
+		clickOnUserLink();
+		clickOnLogoutButton();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 }
