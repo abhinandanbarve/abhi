@@ -1,10 +1,16 @@
-2018-06-06 19:07:08 INFO  TestBase:128 - loading config.properties
-2018-06-06 19:07:08 INFO  TestBase:133 - loading or.properties
-2018-06-06 19:07:08 INFO  TestBase:138 - loading homepage.properties
-2018-06-06 19:07:11 INFO  WaitHelper:33 - 20
-2018-06-06 19:07:11 INFO  WaitHelper:38 - 240
-2018-06-06 19:07:11 INFO  LoginTest:21 - com.abhi.loginPage.LoginTest started
-2018-06-06 19:07:15 INFO  WaitHelper:62 - element found...
-2018-06-06 19:07:15 INFO  LoginPage:55 - entering user name fdfgd ergret rgrtt ....abbar
-2018-06-06 19:07:16 INFO  LoginPage:60 - entering password....abbar
-2018-06-06 19:07:16 INFO  LoginPage:65 - clicking on submit button...
+2018-06-10 01:00:26 INFO  WaitHelper:33 - 20
+2018-06-10 01:00:26 INFO  WaitHelper:38 - 240
+2018-06-10 01:00:45 INFO  WaitHelper:62 - element found...
+2018-06-10 01:00:45 INFO  LoginPage:51 - entering user name fdfgd ergret rgrtt ....sridam
+2018-06-10 01:00:45 INFO  LoginPage:56 - entering password....sridam
+2018-06-10 01:00:45 INFO  LoginPage:61 - clicking on submit button...
+2018-06-10 01:01:29 INFO  WaitHelper:62 - element found...REPORTS
+2018-06-10 01:01:29 INFO  GenericHelper:57 - element is displayed..[[ChromeDriver: chrome on XP (e0d4f717bdb27891c4b680eadf59e33b)] -> xpath: //*[@id="aw-state-userName"]]
+2018-06-10 01:01:29 INFO  GenericHelper:57 - element is displayed..[[ChromeDriver: chrome on XP (e0d4f717bdb27891c4b680eadf59e33b)] -> xpath: //div[contains(text(),'Reports')]]
+2018-06-10 01:01:30 INFO  WaitHelper:62 - element found...REPORTS
+2018-06-10 01:01:30 INFO  HomePage:52 - clickin on Reports:
+2018-06-10 01:01:47 INFO  WaitHelper:62 - element found...Reports
+2018-06-10 01:02:05 INFO  WaitHelper:62 - element found...Dama, Srinivasulu (SRIDAM) (sridam)
+2018-06-10 01:02:05 INFO  LogoutPage:33 - clicked on user in link...
+2018-06-10 01:02:05 INFO  LogoutPage:38 - clicked on logout link...
+2018-06-10 01:02:08 INFO  WaitHelper:62 - element found...

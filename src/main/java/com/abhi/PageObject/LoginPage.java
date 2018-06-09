@@ -17,90 +17,60 @@ import com.abhi.testBase.TestBase;
  * @author abhinandan
  * 
  */
-public class LoginPage{
-	
-	WebDriver driver;
-	
+public class LoginPage extends WebPage{
+
+
 	private final Logger log = LoggerHelper.getLogger(LoginPage.class);
-	
-	WaitHelper waitHelper;
-	
-	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")
-	WebElement userLink;
-	
-	@FindBy(xpath="//*[@id=\"main-view\"]/form/div/div/div[2]/div/ul/li[1]/input")
+
+	@FindBy(xpath="//input[@name='userName'][@type='text'][@placeholder='User Name']")
 	WebElement userName;
-		
-	
-	@FindBy(xpath="//*[@id=\"main-view\"]/form/div/div/div[2]/div/ul/li[2]/input")
-	WebElement password;
-	
-	@FindBy(xpath="//*[@id=\"main-view\"]/form/div/div/div[2]/div/ul/li[4]/button")
-	WebElement submitLogin;
-	
-	@FindBy(xpath="//*[@id=\"aw-state-userName\"]/div/div[2]/aw-popup-panel/div/div/div/div/div/aw-popup-command-bar/aw-popup-command-cell[2]/li")
-	WebElement logout;
-	
 	
 
+	@FindBy(xpath="//input[@placeholder='Password'][@type='password']")
+	WebElement password;
+	
+	@FindBy(xpath="//button[text()='Sign in']")
+	WebElement submitLogin;
+
+	
+	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")	
+	public WebElement userLink;
+	
+	@FindBy(xpath="//div[contains(text(),'Reports')]")
+	public WebElement reportsTile;
+
+	
 	public LoginPage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper = new WaitHelper(driver);
 		waitHelper.waitForElement(driver, userName,new Config(TestBase.OR).getExplicitWait());
 	}
-	
-	
+
+
 	public void enterUserName(String userName){
 		log.info("entering user name fdfgd ergret rgrtt ...."+userName);
 		this.userName.sendKeys(userName);
 	}
-	
+
 	public void enterPassword(String password){
 		log.info("entering password...."+password);
 		this.password.sendKeys(password);
 	}
-	
+
 	public HomePage clickOnSubmitButton(){
 		log.info("clicking on submit button...");
-		//new JavaScriptHelper(driver).scrollDownVertically();
 		submitLogin.click();
 		return new HomePage(driver);
 	}
-	
+
 	public boolean verifySuccessLoginMsg(){
-		return new GenericHelper().isDisplayed(userLink);
+		return new GenericHelper().isDisplayed(userLink) && new GenericHelper().isDisplayed(reportsTile);
 	}
-		
-	
+
+
 	public void loginToApplication(String userName, String password){		
 		enterUserName(userName);
 		enterPassword(password);
 		clickOnSubmitButton();
 	}
-	
-	public void clickOnUserLink(){
-		log.info("clicked on user in link...");
-		userLink.click();
-	}
-	
-	public void clickOnLogoutButton(){
-		log.info("clicked on logout link...");
-		logout.click();
-	}
-	
-	
-	public void logoutFromToApplication(){
-		clickOnUserLink();
-		clickOnLogoutButton();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-
 }

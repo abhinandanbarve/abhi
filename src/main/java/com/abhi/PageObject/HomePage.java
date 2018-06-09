@@ -18,11 +18,9 @@ import com.abhi.testBase.TestBase;
  * @author abhinandan
  * 
  */
-public class HomePage {
+public class HomePage extends WebPage{
 	
-	WebDriver driver;
 	private final Logger log = LoggerHelper.getLogger(HomePage.class);
-	WaitHelper waitHelper;
 	
 	String Tshirts = "T-shirts";
 	String Blouses = "Blouses";
@@ -36,36 +34,25 @@ public class HomePage {
 	public WebElement dressesMenu;
 	
 	
-	@FindBy(xpath="//*[@id='block_top_menu']/ul/li[3]/a")
-	public WebElement tshirtsMenu;
+	//@FindBy(xpath="//div[@class='name nameOverride'][contains(text(),'Reports')]")
+	@FindBy(xpath="//div[contains(text(),'Reports')]")
+	public WebElement reportsTile;
 
 	
 	
 	
 	public HomePage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper = new WaitHelper(driver);
-		TestBase testBase = new TestBase();
-		waitHelper.waitForElement(driver, womenMenu,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, reportsTile,new Config(TestBase.OR).getExplicitWait());
 	}
 	
-	public void mouseOver(String data){
-		log.info("doing mouse over on :"+data);
-		Actions action = new Actions(driver);
-		action.moveToElement(driver.findElement(By.xpath("//*[contains(text(),'"+data+"')]"))).build().perform();
+	
+	public SummaryReportsPage clickOnSummaryReportsTile(){
+		log.info("clickin on Reports:");
+		reportsTile.click();
+		return new SummaryReportsPage(driver);
 	}
 	
-	public ProductCategoryPage clickOnIntem(String data){
-		log.info("clickin on :"+data);
-		driver.findElement(By.xpath("//*[contains(text(),'"+data+"')]")).click();
-		return new ProductCategoryPage(driver);
-	}
-	
-	public ProductCategoryPage clickOnMenu(WebElement element){
-		log.info("clickin on : "+element.getText());
-		element.click();
-		return new ProductCategoryPage(driver);
-	}
 
 }

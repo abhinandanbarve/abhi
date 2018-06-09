@@ -10,7 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.abhi.PageObject.HomePage;
-import com.abhi.PageObject.ProductCategoryPage;
+import com.abhi.PageObject.SummaryReportsPage;
 import com.abhi.helper.Logger.LoggerHelper;
 import com.abhi.testBase.Config;
 import com.abhi.testBase.TestBase;
@@ -30,7 +30,7 @@ public class VerifyLowestFirstPriceFilter extends TestBase{
 		driver.get(config.getWebsite());
 		HomePage homepage = new HomePage(driver);
 		
-		ProductCategoryPage pcategoryPage = homepage.clickOnMenu(homepage.womenMenu);
+		SummaryReportsPage pcategoryPage = null;//homepage.clickOnMenu(homepage.womenMenu);
 		// select price filter
 		pcategoryPage.selectSortByFilter("Price: Lowest first");
 		

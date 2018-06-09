@@ -13,7 +13,6 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.helper.DropDown.DropDownHelper;
 import com.abhi.helper.Javascript.JavaScriptHelper;
 import com.abhi.helper.Logger.LoggerHelper;
-import com.abhi.helper.Wait.WaitHelper;
 import com.abhi.helper.assertionHelper.VerificationHelper;
 import com.abhi.testBase.Config;
 import com.abhi.testBase.TestBase;
@@ -22,21 +21,19 @@ import com.abhi.testBase.TestBase;
  * @author abhinandan
  * 
  */
-public class ProductCategoryPage {
+public class SummaryReportsPage extends WebPage{
 
-	WebDriver driver;
-	private final Logger log = LoggerHelper.getLogger(ProductCategoryPage.class);
-	WaitHelper waitHelper;
+	private final Logger log = LoggerHelper.getLogger(SummaryReportsPage.class);
 	
 	public String Black = "Black";
 	public String Orange = "Orange";
 	public String Yellow = "Yellow";
 	
-	@FindBy(xpath="//*[@id='layered_block_left']/p")
-	WebElement catalogTextObj;
+	@FindBy(xpath="//span[@class='aw-layout-locationTitle ng-binding'][contains(text(),'Reports')]")
+	WebElement reportTitle;
 	
-	@FindBy(xpath="//*[@id='layer_cart']/div[1]/div[1]/h2")
-	WebElement productAddedSucessfully;
+	@FindBy(xpath="//h3[@id='CellTitle'][@class='aw-widgets-cellListCellTitle ng-binding'] [contains(text(),'Comments Report')]")
+	WebElement reportListItem;
 	
 	@FindBy(xpath="//*[@id='center_column']/ul/li[4]/div/div[2]/div[2]/a[1]/span")
 	WebElement addToCart;
@@ -54,11 +51,10 @@ public class ProductCategoryPage {
 	List<WebElement> allpriceElements;
 	
 	
-	public ProductCategoryPage(WebDriver driver) {
-		this.driver = driver;
+	public SummaryReportsPage(WebDriver driver) {
+		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper = new WaitHelper(driver);
-		waitHelper.waitForElement(driver, catalogTextObj,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, reportTitle,new Config(TestBase.OR).getExplicitWait());
 	}
 	
 	public void mouseOverOnProduct(int number){
@@ -75,7 +71,7 @@ public class ProductCategoryPage {
 	}
 	
 	public boolean verifyPoductAddedSuccesfully(){
-		return VerificationHelper.verifyElementPresent(productAddedSucessfully);
+		return VerificationHelper.verifyElementPresent(reportListItem);
 	}
 	
 	public void clickOnProceedTocheckOut(){

@@ -33,6 +33,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
+import com.abhi.PageObject.LoginPage;
+import com.abhi.PageObject.LogoutPage;
 import com.abhi.excelReader.Excel_reader;
 import com.abhi.helper.Wait.WaitHelper;
 import com.relevantcodes.extentreports.ExtentReports;
@@ -41,25 +43,25 @@ import com.relevantcodes.extentreports.LogStatus;
 
 
 public class TestBase {
-	
+
 	public static final Logger logger = Logger.getLogger(TestBase.class.getName());
 	public WebDriver driver;
 	public static Properties OR;
 	public Config config;
 	public File f1;
 	public FileInputStream file;
-	
-    public static ExtentReports extent;
+
+	public static ExtentReports extent;
 	public static ExtentTest test;
 	public Excel_reader excelreader;
 	public ITestResult result;
-	
+
 	static {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
 		extent = new ExtentReports(System.getProperty("user.dir") + "/src/main/java/com/abhi/report/test" + formater.format(calendar.getTime()) + ".html", false);
 	}
-	
+
 	@BeforeTest
 	public void launchBrowser(){
 		try {
@@ -68,24 +70,46 @@ public class TestBase {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		getBrowser(config.getBrowser());
 		WaitHelper waitHelper = new WaitHelper(driver);
 		waitHelper.setImplicitWait(config.getImplicitWait(), TimeUnit.SECONDS);
 		waitHelper.setPageLoadTimeout(config.getPageLoadTimeOut(), TimeUnit.SECONDS);
+		loginToApplication();
+	}
+
+
+	public void loginToApplication() {
+
+		driver.get(config.getWebsite());
+		LoginPage loginPage = new LoginPage(driver);
+		loginPage.loginToApplication(config.getUserName(), config.getPassword());
+		loginPage.verifySuccessLoginMsg();
 	}
 	
+	public void logoutFromToApplication() {
+
+		LogoutPage logoutPage = new LogoutPage(driver);
+		logoutPage.logoutFromToApplication();
+	}
 	@AfterTest
 	public void closeBrowser(){
+		
+		try {
+			logoutFromToApplication();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		try {
 			driver.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
+
+
+
 	//3.0.1
 	//FF:-47.0.2
 	//0.15
@@ -116,9 +140,9 @@ public class TestBase {
 			}
 		}
 	}
-	
+
 	public void loadPropertiesFile() throws IOException{
-		
+
 		String log4jConfPath = "log4j.properties";
 		PropertyConfigurator.configure(log4jConfPath);
 		OR = new Properties();
@@ -126,20 +150,20 @@ public class TestBase {
 		file = new FileInputStream(f1);
 		OR.load(file);
 		logger.info("loading config.properties");
-		
+
 		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/config/or.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
 		logger.info("loading or.properties");
-		
+
 		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/properties/homepage.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
 		logger.info("loading homepage.properties");
 	}
-	
+
 	public String getScreenShot(String imageName) throws IOException{
-		
+
 		if(imageName.equals("")){
 			imageName = "blank";
 		}
@@ -152,23 +176,23 @@ public class TestBase {
 		FileUtils.copyFile(image, destFile);
 		return actualImageName;
 	}
-	
+
 	public WebElement waitForElement(WebDriver driver,long time,WebElement element){
 		WebDriverWait wait = new WebDriverWait(driver, time);
 		return wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
-	
+
 	public WebElement waitForElementWithPollingInterval(WebDriver driver,long time,WebElement element){
 		WebDriverWait wait = new WebDriverWait(driver, time);
 		wait.pollingEvery(5, TimeUnit.SECONDS);
 		wait.ignoring(NoSuchElementException.class);
 		return wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
-	
+
 	public void impliciteWait(long time){
 		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 	}
-	
+
 	public void getresult(ITestResult result) throws IOException {
 		if (result.getStatus() == ITestResult.SUCCESS) {
 
@@ -194,17 +218,17 @@ public class TestBase {
 		test = extent.startTest(result.getName());
 		test.log(LogStatus.INFO, result.getName() + " test Started");
 	}
-	
+
 	@AfterClass(alwaysRun = true)
 	public void endTest() {
 		//driver.quit();
 		extent.endTest(test);
 		extent.flush();
 	}
-	
+
 	public WebElement getLocator(String locator) throws Exception {
 		//System.out.println(locator);
-        String[] split = locator.split(":");
+		String[] split = locator.split(":");
 		String locatorType = split[0];
 		String locatorValue = split[1];
 		//System.out.println("locatorType:-"+locatorType);
@@ -231,9 +255,9 @@ public class TestBase {
 		else
 			throw new Exception("Unknown locator type '" + locatorType + "'");
 	}
-	
+
 	public  List<WebElement> getLocators(String locator) throws Exception {
-        String[] split = locator.split(":");
+		String[] split = locator.split(":");
 		String locatorType = split[0];
 		String locatorValue = split[1];
 		System.out.println("locatorType:-"+locatorType);
@@ -262,15 +286,15 @@ public class TestBase {
 		else
 			throw new Exception("Unknown locator type '" + locatorType + "'");
 	}
-	
+
 	public WebElement getWebElement(String locator) throws Exception{
 		return getLocator(OR.getProperty(locator));
 	}
-	
+
 	public List<WebElement> getWebElements(String locator) throws Exception{
 		return getLocators(OR.getProperty(locator));
 	}
-	
+
 	public String[][] getData(String excelName, String sheetName){
 		System.out.println(System.getProperty("user.dir"));
 		String excellocation = System.getProperty("user.dir")+"/src/main/java/com/abhi/data/"+excelName;
@@ -278,14 +302,14 @@ public class TestBase {
 		excelreader = new Excel_reader();
 		return excelreader.getExcelData(excellocation, sheetName);
 	}
-	
+
 	public static void updateResultupdateResult(int indexSI,  String screenShotLocation,String response) throws IOException {
 		String startDateTime = new SimpleDateFormat("MM-dd-yyyy_HH-ss").format(new GregorianCalendar().getTime());
-	    System.out.println("startDateTime---"+startDateTime);
+		System.out.println("startDateTime---"+startDateTime);
 		String userDirector = System.getProperty("user.dir");
 
 		String resultFile = userDirector + "/src/main/java/com/abhi/screenshot/TestReport.html";
-		
+
 		File file = new File(resultFile);
 		System.out.println(file.exists());
 
@@ -328,17 +352,17 @@ public class TestBase {
 		bw1.flush();
 		bw1.close();
 	}
-	
+
 	public static void main(String[] args) throws Exception {
 		TestBase test = new TestBase();
 		test.loadPropertiesFile();
 		test.getBrowser("firefox");
 		System.out.println(test.OR.getProperty("username"));
-		
-		
+
+
 		//test.getWebElement("submitbutton");
 		//test.getWebElements("submitbutton");
-		
+
 		//test.getLocator(test.OR.getProperty("username"));
 
 	}
