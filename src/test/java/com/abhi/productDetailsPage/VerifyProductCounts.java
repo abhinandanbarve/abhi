@@ -30,7 +30,7 @@ public class VerifyProductCounts extends TestBase{
 		homePage = new HomePage(driver);
 		SummaryReportsPage pCate = null;//homePage.clickOnMenu(homePage.womenMenu);
 		pCate.selectColor(pCate.Orange);
-		int count = pCate.getTotalProducts();
+		int count = pCate.getTotalReports();
 		
 		if(count==3){
 			log.info("product count is matching");

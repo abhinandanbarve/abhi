@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.DataProvider;
 
 import com.abhi.helper.DropDown.DropDownHelper;
 import com.abhi.helper.Javascript.JavaScriptHelper;
@@ -32,11 +33,14 @@ public class SummaryReportsPage extends WebPage{
 	@FindBy(xpath="//span[@class='aw-layout-locationTitle ng-binding'][contains(text(),'Reports')]")
 	WebElement reportTitle;
 	
-	@FindBy(xpath="//h3[@id='CellTitle'][@class='aw-widgets-cellListCellTitle ng-binding'] [contains(text(),'Comments Report')]")
+	@FindBy(xpath="//h3[@id='CellTitle'][@class='aw-widgets-cellListCellTitle ng-binding'] [contains(text(),'Comment Status')]")
 	WebElement reportListItem;
 	
-	@FindBy(xpath="//*[@id='center_column']/ul/li[4]/div/div[2]/div[2]/a[1]/span")
-	WebElement addToCart;
+	@FindBy(xpath="//h3[@id='CellTitle'][@class='aw-widgets-cellListCellTitle ng-binding']")
+	List<WebElement> allReportItems;
+	
+	@FindBy(xpath="//button[@id='cmdFilterPanelDui'][@title='Generate Report']")
+	WebElement generateReportButton;
 	
 	@FindBy(xpath="//*[@id='layer_cart']/div[1]/div[2]/div[4]/a/span")
 	WebElement proceedToCheckOut;
@@ -54,8 +58,55 @@ public class SummaryReportsPage extends WebPage{
 	public SummaryReportsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportTitle,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, allReportItems.get(0),new Config(TestBase.OR).getTcRALoginWait());
 	}
+	
+	public int getTotalReports(){
+		return allReportItems.size();
+	}
+	
+	public List<WebElement> getAllReportNames(){
+		return allReportItems;
+	}
+	
+	@DataProvider(name = "reportdetails")
+	public Object[][] getReportDetails(){
+		
+		Object[][] reportDetails = new Object[1][3];
+		reportDetails[0][0] = "Project Finance Structure Overview";
+		reportDetails[0][1] = "Project Manager";
+		reportDetails[0][2] = "[MYSELF]";
+		
+		return reportDetails;
+	}
+	
+	public void clickOnReportName(String reportName){
+		
+		WebElement reportWebElement = getWebElementUsingReportName(reportName);
+		log.info("clickin on Generate Report icon");
+		reportWebElement.click();
+	}
+	
+	private WebElement getWebElementUsingReportName(String reportName) {
+		for (WebElement reportItem : allReportItems) {
+			if(reportItem.getText().toLowerCase().equals(reportName.toLowerCase()))
+				return reportItem;
+		}
+		log.error(reportName + " :: report not found in the report list. Please verify configuration file.");
+		return null;
+	}
+
+	public void clickOnGenerateReport(){
+		log.info("clickin on Generate Report icon");
+		generateReportButton.click();
+	}
+	
+	
+	public boolean verifyPoductAddedSuccesfully(){
+		return VerificationHelper.verifyElementPresent(reportListItem);
+	}
+	
+	
 	
 	public void mouseOverOnProduct(int number){
 		String fPart = "//*[@id='center_column']/ul/li[";
@@ -67,12 +118,10 @@ public class SummaryReportsPage extends WebPage{
 	
 	public void clickOnAddToCart(){
 		log.info("clickin on add to cart");
-		addToCart.click();
+		generateReportButton.click();
 	}
 	
-	public boolean verifyPoductAddedSuccesfully(){
-		return VerificationHelper.verifyElementPresent(reportListItem);
-	}
+	
 	
 	public void clickOnProceedTocheckOut(){
 		log.info("clickin on :"+proceedToCheckOut.getText());
@@ -128,13 +177,7 @@ public class SummaryReportsPage extends WebPage{
 		driver.findElement(By.xpath(".//*[@id='center_column']/ul/li[1]/div/div[2]/div[2]/a[1]/span")).click();
 	}
 	
-	public int getTotalProducts(){
-		return totalProducts.size();
-	}
 	
-	public List<WebElement> getAllProductsPrice(){
-		return allpriceElements;
-	}
 	
 	public void selectSortByFilter(String dataToSelect){
 		DropDownHelper dropdown = new DropDownHelper(driver);

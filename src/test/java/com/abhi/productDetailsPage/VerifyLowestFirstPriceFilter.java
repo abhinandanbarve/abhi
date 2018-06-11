@@ -37,7 +37,7 @@ public class VerifyLowestFirstPriceFilter extends TestBase{
 		// wait for some time to make sure price is sorted.
 		Thread.sleep(8000);
 		
-		List<WebElement> price = pcategoryPage.getAllProductsPrice();
+		List<WebElement> price = pcategoryPage.getAllReportNames();
 		
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		

@@ -33,6 +33,10 @@ public class Config extends TestBase{
 	public int getExplicitWait() {
 		return Integer.parseInt(OR.getProperty("ExplicitWait"));
 	}
+	
+	public int getTcRALoginWait() {
+		return Integer.parseInt(OR.getProperty("TcRALoginWait"));
+	}
 
 	public String getDbType() {
 		return OR.getProperty("DataBase.Type");
