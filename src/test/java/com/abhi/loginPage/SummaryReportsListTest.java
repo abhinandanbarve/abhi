@@ -13,6 +13,8 @@ public class SummaryReportsListTest extends TestBase{
 	  
 	  HomePage homePage = new HomePage(driver);
 	  SummaryReportsPage clickOnSummaryReportsTile = homePage.clickOnSummaryReportsTile();
+	  clickOnSummaryReportsTile.clickOnGenerateReport();
+	  
 	  System.out.println(clickOnSummaryReportsTile.Yellow);
   }
 }

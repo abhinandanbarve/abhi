@@ -82,6 +82,7 @@ public class TestBase {
 	public void loginToApplication() {
 
 		driver.get(config.getWebsite());
+		driver.manage().window().maximize();
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.loginToApplication(config.getUserName(), config.getPassword());
 		loginPage.verifySuccessLoginMsg();
