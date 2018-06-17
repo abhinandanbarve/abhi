@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -23,9 +24,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 //import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -33,6 +36,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
+import com.abhi.PageObject.HomePage;
 import com.abhi.PageObject.LoginPage;
 import com.abhi.PageObject.LogoutPage;
 import com.abhi.excelReader.Excel_reader;
@@ -59,61 +63,93 @@ public class TestBase {
 	static {
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
-		extent = new ExtentReports(System.getProperty("user.dir") + "/src/main/java/com/abhi/report/test" + formater.format(calendar.getTime()) + ".html", false);
+		extent = new ExtentReports(System.getProperty("user.dir") + "/report/result/test" + formater.format(calendar.getTime()) + ".html", false);
 	}
 
 	@BeforeTest
-	public void launchBrowser(){
+	public void launchBrowserAndLogin() throws Exception{
+
 		try {
 			loadPropertiesFile();
 			config = new Config(OR);
-		} catch (IOException e) {
-			e.printStackTrace();
+			Assert.assertTrue(OR != null && OR.size() > 0, "Exception occured while loading configuration files.");
+		} catch (Exception exception) {
+			logger.error("Exception occured while loading configuration files.", exception);
+			throw exception;
 		}
 
 		getBrowser(config.getBrowser());
-		WaitHelper waitHelper = new WaitHelper(driver);
-		waitHelper.setImplicitWait(config.getImplicitWait(), TimeUnit.SECONDS);
-		waitHelper.setPageLoadTimeout(config.getPageLoadTimeOut(), TimeUnit.SECONDS);
-		loginToApplication();
-	}
-
-
-	public void loginToApplication() {
-
 		driver.get(config.getWebsite());
 		driver.manage().window().maximize();
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.loginToApplication(config.getUserName(), config.getPassword());
-		loginPage.verifySuccessLoginMsg();
-	}
+
+		HomePage homePage = loginToApplication();
+		boolean isLoginSucsess = homePage.isLoginSucsess();
+		Assert.assertTrue(isLoginSucsess,"Login to Teamcenter application fail. Please verify credentials.");
 	
-	public void logoutFromToApplication() {
-
-		LogoutPage logoutPage = new LogoutPage(driver);
-		logoutPage.logoutFromToApplication();
 	}
+
 	@AfterTest
-	public void closeBrowser(){
-		
-		try {
-			logoutFromToApplication();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		try {
-			driver.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void logoutAndCloseBrowser(){
+
+		boolean isLogoutSuccess = logoutTcApplication();
+		boolean isCloseBrowserSuccess = closeBrowser();
+		Assert.assertTrue(isLogoutSuccess && isCloseBrowserSuccess, "Exception occured while logout or close browser operation. Please verify application and test case.");
 	}
 
+	
+	public HomePage loginToApplication() {		
+		LoginPage loginPage = new LoginPage(driver);
+		return loginPage.loginToApplication(config.getUserName(), config.getPassword());
 
+	}
 
-	//3.0.1
-	//FF:-47.0.2
-	//0.15
+	public boolean logoutTcApplication() {
+
+		boolean isOperationSuccess = true;
+		
+		try 
+		{
+			new LogoutPage(driver).logoutTcApplication();
+		} 
+		catch (Exception exception) 
+		{
+			logger.error("Exception occured while logout operation. Retrying one more time.", exception);
+			try 
+			{
+				new LogoutPage(driver).logoutTcApplication();
+			} catch (Exception exception2) 
+			{
+				logger.error("Exception occured while logout operation second time, continue closing browser without logout. Please clear tcserver instance from pool manager", exception);
+				isOperationSuccess = false;
+			}
+		}
+		return isOperationSuccess;
+	}
+
+	private boolean closeBrowser() {
+
+		boolean isOperationSuccess = true;
+
+		try 
+		{
+			driver.close();
+		} 
+		catch (Exception exception) 
+		{
+			logger.error("Exception occured while closing Browser. Retrying one more time.", exception);
+			try 
+			{
+				driver.close();
+			} catch (Exception exception2) 
+			{
+				logger.error("Exception occured while closing Browser second time.", exception);
+				isOperationSuccess = false;
+			}
+		}
+
+		return isOperationSuccess;
+	}
+
 	public void getBrowser(String browser){
 		if(System.getProperty("os.name").contains("Window")){
 			if(browser.equalsIgnoreCase("firefox")){
@@ -125,7 +161,9 @@ public class TestBase {
 			else if(browser.equalsIgnoreCase("chrome")){
 				//https://chromedriver.storage.googleapis.com/index.html
 				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver.exe");
-				driver = new ChromeDriver();
+				ChromeOptions options = new ChromeOptions(); 
+				options.addArguments("disable-infobars"); 
+				driver = new ChromeDriver(options);
 			}
 		}
 		else if(System.getProperty("os.name").contains("Mac")){
@@ -137,7 +175,9 @@ public class TestBase {
 			}
 			else if(browser.equalsIgnoreCase("chrome")){
 				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/drivers/chromedriver");
-				driver = new ChromeDriver();
+				ChromeOptions options = new ChromeOptions(); 
+				options.addArguments("disable-infobars"); 
+				driver = new ChromeDriver(options);
 			}
 		}
 	}
@@ -157,7 +197,7 @@ public class TestBase {
 		OR.load(file);
 		logger.info("loading or.properties");
 
-		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/properties/homepage.properties");
+		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/config/homepage.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
 		logger.info("loading homepage.properties");
@@ -169,29 +209,13 @@ public class TestBase {
 			imageName = "blank";
 		}
 		File image = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		String imagelocation = System.getProperty("user.dir")+"/src/main/java/com/abhi/screenshot/";
+		String imagelocation = System.getProperty("user.dir")+"/report/screenshot/";
 		Calendar calendar = Calendar.getInstance();
 		SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
 		String actualImageName = imagelocation+imageName+"_"+formater.format(calendar.getTime())+".png";
 		File destFile = new File(actualImageName);
 		FileUtils.copyFile(image, destFile);
 		return actualImageName;
-	}
-
-	public WebElement waitForElement(WebDriver driver,long time,WebElement element){
-		WebDriverWait wait = new WebDriverWait(driver, time);
-		return wait.until(ExpectedConditions.elementToBeClickable(element));
-	}
-
-	public WebElement waitForElementWithPollingInterval(WebDriver driver,long time,WebElement element){
-		WebDriverWait wait = new WebDriverWait(driver, time);
-		wait.pollingEvery(5, TimeUnit.SECONDS);
-		wait.ignoring(NoSuchElementException.class);
-		return wait.until(ExpectedConditions.elementToBeClickable(element));
-	}
-
-	public void impliciteWait(long time){
-		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 	}
 
 	public void getresult(ITestResult result) throws IOException {
@@ -220,13 +244,31 @@ public class TestBase {
 		test.log(LogStatus.INFO, result.getName() + " test Started");
 	}
 
+	
 	@AfterClass(alwaysRun = true)
-	public void endTest() {
-		//driver.quit();
+	public void endTest() {		
 		extent.endTest(test);
 		extent.flush();
 	}
 
+	
+
+	public WebElement waitForElement(WebDriver driver,long time,WebElement element){
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		return wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	public WebElement waitForElementWithPollingInterval(WebDriver driver,long time,WebElement element){
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		wait.pollingEvery(5, TimeUnit.SECONDS);
+		wait.ignoring(NoSuchElementException.class);
+		return wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+
+	public void impliciteWait(long time){
+		driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+	}
+	
 	public WebElement getLocator(String locator) throws Exception {
 		//System.out.println(locator);
 		String[] split = locator.split(":");

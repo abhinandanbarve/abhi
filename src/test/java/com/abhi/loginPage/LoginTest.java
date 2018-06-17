@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.abhi.PageObject.HomePage;
 import com.abhi.PageObject.LoginPage;
 import com.abhi.PageObject.LogoutPage;
 import com.abhi.helper.Logger.LoggerHelper;
@@ -27,7 +28,10 @@ public class LoginTest extends TestBase{
 		LoginPage loginPage = new LoginPage(driver);
 		
 		loginPage.loginToApplication(config.getUserName(), config.getPassword());
-		boolean status = loginPage.verifySuccessLoginMsg();
+		
+		HomePage homePage = new HomePage(driver);
+		
+		boolean status = homePage.isLoginSucsess();
 		
 		if(status){
 		   log.info("login is sucessful");	
@@ -42,7 +46,7 @@ public class LoginTest extends TestBase{
 		
 		try {
 			LogoutPage logoutPage = new LogoutPage(driver);
-			logoutPage.logoutFromToApplication();
+			logoutPage.logoutTcApplication();
 		}
 		catch(Exception exception ) {
 			log.error(exception.getMessage(), exception);

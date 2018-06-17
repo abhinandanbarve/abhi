@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.helper.Logger.LoggerHelper;
-import com.abhi.helper.Wait.WaitHelper;
-import com.abhi.helper.genericHelper.GenericHelper;
 import com.abhi.testBase.Config;
 import com.abhi.testBase.TestBase;
 
@@ -20,26 +18,18 @@ import com.abhi.testBase.TestBase;
 public class LoginPage extends WebPage{
 
 
-	private final Logger log = LoggerHelper.getLogger(LoginPage.class);
+	private final Logger logger = LoggerHelper.getLogger(LoginPage.class);
 
-	@FindBy(xpath="//input[@name='userName'][@type='text'][@placeholder='User Name']")
+	@FindBy(xpath="//input[@type='text' and @placeholder='User Name']")
 	WebElement userName;
-	
 
-	@FindBy(xpath="//input[@placeholder='Password'][@type='password']")
+	@FindBy(xpath="//input[@type='password' and @placeholder='Password']")
 	WebElement password;
-	
-	@FindBy(xpath="//button[text()='Sign in']")
+
+	@FindBy(xpath="//button[contains(text(),'Sign in')]")
 	WebElement submitLogin;
 
-	
-	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")	
-	public WebElement userLink;
-	
-	@FindBy(xpath="//div[contains(text(),'Reports')]")
-	public WebElement reportsTile;
 
-	
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -48,29 +38,25 @@ public class LoginPage extends WebPage{
 
 
 	public void enterUserName(String userName){
-		log.info("entering user name fdfgd ergret rgrtt ...."+userName);
+		logger.info("entering user name ...."+userName);
 		this.userName.sendKeys(userName);
 	}
 
 	public void enterPassword(String password){
-		log.info("entering password...."+password);
+		logger.info("entering password...."+password);
 		this.password.sendKeys(password);
 	}
 
-	public HomePage clickOnSubmitButton(){
-		log.info("clicking on submit button...");
-		submitLogin.click();
-		return new HomePage(driver);
+	public void clickOnSubmitButton(){
+		logger.info("clicking on submit button...");
+		submitLogin.click();		
 	}
 
-	public boolean verifySuccessLoginMsg(){
-		return new GenericHelper().isDisplayed(userLink) && new GenericHelper().isDisplayed(reportsTile);
-	}
-
-
-	public void loginToApplication(String userName, String password){		
+	
+	public HomePage loginToApplication(String userName, String password){		
 		enterUserName(userName);
 		enterPassword(password);
 		clickOnSubmitButton();
+		return new HomePage(driver);
 	}
 }

@@ -15,10 +15,11 @@ public class LogoutPage extends WebPage{
 	private final Logger log = LoggerHelper.getLogger(LogoutPage.class);
 	
 	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")
-	WebElement userLink;
+	WebElement userNameLink;
 	
-	@FindBy(xpath="//li[text()='Sign Out']")
-	WebElement logout;
+	@FindBy(xpath="//*[@id='aw-state-userName']//li[contains(text(),'Sign Out')]")
+	WebElement logoutLink;
+	
 	
 	@FindBy(xpath="//input[@name='userName'][@type='text'][@placeholder='User Name']")
 	WebElement userName;
@@ -26,30 +27,22 @@ public class LogoutPage extends WebPage{
 	public LogoutPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, userLink,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, userNameLink,new Config(TestBase.OR).getExplicitWait());
 	}
 	
-	public void clickOnUserLink(){
-		log.info("clicked on user in link...");
-		userLink.click();
+	public void clickOnUserNameLink(){
+		log.info("clicked on user name link...");
+		userNameLink.click();
 	}
 	
-	public void clickOnLogoutButton(){
+	public void clickOnLogoutLink(){
 		log.info("clicked on logout link...");
-		logout.click();
+		logoutLink.click();
 	}
 	
-	
-	public void logoutFromToApplication(){
-		clickOnUserLink();
-		clickOnLogoutButton();
+	public void logoutTcApplication(){
+		clickOnUserNameLink();
+		clickOnLogoutLink();
 		
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		waitHelper.waitForElement(driver, userName,new Config(TestBase.OR).getExplicitWait());
 	}
 }
