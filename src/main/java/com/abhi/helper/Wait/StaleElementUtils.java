@@ -1,6 +1,6 @@
 package com.abhi.helper.Wait;
 
-import com.abhi.PageObject.SummaryReportsPage;
+import com.abhi.PageObject.SummaryReportPage;
 import com.abhi.helper.Logger.LoggerHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;

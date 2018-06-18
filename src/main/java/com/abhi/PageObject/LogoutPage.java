@@ -13,36 +13,32 @@ import com.abhi.testBase.TestBase;
 public class LogoutPage extends WebPage{
 
 	private final Logger log = LoggerHelper.getLogger(LogoutPage.class);
-	
+
 	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")
-	WebElement userNameLink;
-	
+	private WebElement userNameLink;
+
 	@FindBy(xpath="//*[@id='aw-state-userName']//li[contains(text(),'Sign Out')]")
-	WebElement logoutLink;
-	
-	
-	@FindBy(xpath="//input[@name='userName'][@type='text'][@placeholder='User Name']")
-	WebElement userName;
-	
+	private WebElement logoutLink;
+
 	public LogoutPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement(driver, userNameLink,new Config(TestBase.OR).getExplicitWait());
 	}
-	
-	public void clickOnUserNameLink(){
+
+	private void clickOnUserNameLink(){
 		log.info("clicked on user name link...");
 		userNameLink.click();
 	}
-	
-	public void clickOnLogoutLink(){
+
+	private void clickOnLogoutLink(){
 		log.info("clicked on logout link...");
 		logoutLink.click();
 	}
-	
+
 	public void logoutTcApplication(){
 		clickOnUserNameLink();
 		clickOnLogoutLink();
-		
+
 	}
 }

@@ -12,40 +12,41 @@ import com.abhi.testBase.TestBase;
 
 public class GlobelSearchPage extends WebPage{
 
-	
-	private final Logger logger = LoggerHelper.getLogger(HomePage.class);
+	private final Logger logger = LoggerHelper.getLogger(GlobelSearchPage.class);
 
 	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//a[contains(text(),'Category:')]")
-	public WebElement globalSearchLink;
+	private WebElement globalSearchLink;
 
 	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//ul/li[contains(text(),'Projects/Opportunities')]")
-	public WebElement projectMenuOnGlobalSearch;
+	private WebElement projectMenuOnGlobalSearch;
 
 	@FindBy(xpath="//aw-search-global//aw-search-box//input[@type='text']")
-	public WebElement globalSearchText;
+	private WebElement globalSearchText;
 
 	@FindBy(xpath="//aw-search-global//aw-search-box//aw-icon")
-	public WebElement globalSearchButton;
+	private WebElement globalSearchButton;
 
 
 	public GlobelSearchPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement(driver, globalSearchButton,new Config(TestBase.OR).getExplicitWait());
+		logger.debug("Loading GlobelSearchPage done ...");
 	}
 
-	public void clickOnGlobalSearchLink(){
+	private void clickOnGlobalSearchLink(){
 		logger.info("clicking on Global Search Link...");
 		this.globalSearchLink.click();
 	}
 
-	public void selectProjectOnSearchMenu(){
-		logger.info("clicking on Global Search Link...");
+	private void selectProjectOnSearchMenu(){
+		logger.info("clicking on Project On Search Menu...");
 		this.projectMenuOnGlobalSearch.click();
 	}
 
-	public void enterSearchCriteria(String searchValue){
-		logger.info("entering password...."+searchValue);
+	private void enterSearchCriteria(String searchValue){
+		logger.info("entering Search Criteria....Search value is: "+searchValue);
+		this.globalSearchText.clear();
 		this.globalSearchText.sendKeys(searchValue);
 	}
 
@@ -53,7 +54,7 @@ public class GlobelSearchPage extends WebPage{
 		logger.info("clicking on search button...");
 		this.globalSearchButton.click();
 	}
-	
+
 	public GlobelSearchResultPage searchProject(String searchValue){		
 		clickOnGlobalSearchLink();
 		selectProjectOnSearchMenu();

@@ -11,14 +11,13 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.PageObject.ReportFilterPage.ReportType;
 import com.abhi.helper.Logger.LoggerHelper;
 import com.abhi.helper.Wait.StaleElementUtils;
-import com.abhi.helper.assertionHelper.VerificationHelper;
 import com.abhi.testBase.Config;
 import com.abhi.testBase.TestBase;
 
-public class RightToolBarPage extends WebPage{
+public class ProjectRightToolBarPage extends WebPage{
 
 
-	private final Logger log = LoggerHelper.getLogger(LoginPage.class);
+	private final Logger logger = LoggerHelper.getLogger(LoginPage.class);
 
 	
 	//String generateReportBtnPath = "//button[@id='cmdFilterPanelDui'][@title='Generate Report']";
@@ -28,7 +27,7 @@ public class RightToolBarPage extends WebPage{
 	WebElement generateReportButton;
 
 	
-	public RightToolBarPage(WebDriver driver) 	{
+	public ProjectRightToolBarPage(WebDriver driver) 	{
 
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -47,12 +46,12 @@ public class RightToolBarPage extends WebPage{
 	}
 
 	public void clickOnGenerateReportButton(){
-		log.info("clicking on generate report button...");
+		logger.info("clicking on generate report button...");
 		this.generateReportButton.click();
 
 	}
 
-	public WebPage selectReportCommand(ReportType reportType){		
+	public ProjectReportListPage selectReportCommand(){		
 		
 		try
 		{
@@ -62,16 +61,9 @@ public class RightToolBarPage extends WebPage{
 		catch(Exception exception)
 		{
 			clickOnGenerateReportButton();
-		}
+		}	
 		
-		
-		WebPage tcraPage = null;
-		if(reportType.equals(ReportType.PROJECT))
-			tcraPage = new ProjectReportListPage(driver);
-		else
-			tcraPage = new ReportFilterPage(driver);
-		
-		return tcraPage;
+		return new ProjectReportListPage(driver);
 	}
 
 

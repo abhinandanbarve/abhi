@@ -21,13 +21,13 @@ public class LoginPage extends WebPage{
 	private final Logger logger = LoggerHelper.getLogger(LoginPage.class);
 
 	@FindBy(xpath="//input[@type='text' and @placeholder='User Name']")
-	WebElement userName;
+	private WebElement userName;
 
 	@FindBy(xpath="//input[@type='password' and @placeholder='Password']")
-	WebElement password;
+	private WebElement password;
 
 	@FindBy(xpath="//button[contains(text(),'Sign in')]")
-	WebElement submitLogin;
+	private WebElement submitLogin;
 
 
 	public LoginPage(WebDriver driver) {
@@ -37,22 +37,21 @@ public class LoginPage extends WebPage{
 	}
 
 
-	public void enterUserName(String userName){
+	private void enterUserName(String userName){
 		logger.info("entering user name ...."+userName);
 		this.userName.sendKeys(userName);
 	}
 
-	public void enterPassword(String password){
+	private void enterPassword(String password){
 		logger.info("entering password...."+password);
 		this.password.sendKeys(password);
 	}
 
-	public void clickOnSubmitButton(){
+	private void clickOnSubmitButton(){
 		logger.info("clicking on submit button...");
 		submitLogin.click();		
 	}
 
-	
 	public HomePage loginToApplication(String userName, String password){		
 		enterUserName(userName);
 		enterPassword(password);

@@ -11,7 +11,7 @@ import com.abhi.testBase.TestBase;
 public class ProjectDetailsPage extends WebPage{
 
 	@FindBy(xpath="//label[text()='PROJECT INFORMATION']")
-	public WebElement projectInformationLabel;
+	private WebElement projectInformationLabel;
 
 
 	public ProjectDetailsPage(WebDriver driver) {
@@ -20,8 +20,8 @@ public class ProjectDetailsPage extends WebPage{
 		waitHelper.waitForElement(driver, projectInformationLabel,new Config(TestBase.OR).getExplicitWait());
 	}
 
-	public RightToolBarPage loadRightToolBarPage() {
-		return new RightToolBarPage(driver);
+	public ProjectRightToolBarPage loadRightToolBarPage() {
+		return new ProjectRightToolBarPage(driver);
 	}
 	
 }

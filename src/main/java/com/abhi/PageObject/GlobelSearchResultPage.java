@@ -13,10 +13,10 @@ import com.abhi.testBase.TestBase;
 public class GlobelSearchResultPage extends WebPage{
 
 	
-	private final Logger logger = LoggerHelper.getLogger(HomePage.class);
+	private final Logger logger = LoggerHelper.getLogger(GlobelSearchResultPage.class);
 
 	@FindBy(xpath="//div[@ng-controller='awTableContainerController']//table/tbody/tr/td//a[@title='Open']")
-	public WebElement selectProject;
+	private WebElement selectProject;
 	
 
 	public GlobelSearchResultPage(WebDriver driver) {
@@ -25,7 +25,7 @@ public class GlobelSearchResultPage extends WebPage{
 		waitHelper.waitForElement(driver, selectProject,new Config(TestBase.OR).getExplicitWait());
 	}
 	
-	public void openProjectDetails(){
+	private void openProjectDetails(){
 		logger.info("opening Project Details...");
 		this.selectProject.click();
 	}

@@ -16,7 +16,7 @@ public class ProjectReportListPage extends WebPage {
 	private final Logger logger = LoggerHelper.getLogger(ProjectReportListPage.class);
 
 	@FindBy(xpath="//form[@panel-id='Awp0InContextReportsList']//ul/li")
-	WebElement reportList;
+	private WebElement reportList;
 	
 
 	public ProjectReportListPage(WebDriver driver) {
@@ -31,7 +31,7 @@ public class ProjectReportListPage extends WebPage {
 		waitHelper.waitForElement(driver, reportList,waitTime);
 	}
 	
-	public void selectReport(String reportName){
+	private void selectReport(String reportName){
 		logger.info("selecting report ...."+reportName);
 		WebElement report = reportList.findElement(By.xpath("//form[@panel-id='Awp0InContextReportsList']//ul/li//h3[contains(text(),'"+reportName+"')]"));
 		report.click();

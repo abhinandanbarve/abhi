@@ -18,7 +18,7 @@ import com.abhi.testBase.TestBase;
  */
 public class HomePage extends WebPage{
 	
-	private final Logger log = LoggerHelper.getLogger(HomePage.class);
+	private final Logger logger = LoggerHelper.getLogger(HomePage.class);
 	
 	
 	@FindBy(xpath = "//*[@id=\"aw-state-userName\"]")	
@@ -54,15 +54,15 @@ public class HomePage extends WebPage{
 	}
 	
 	
-	public SummaryReportsPage clickOnSummaryReportsTile(){
-		log.info("clickin on Reports:");
+	public SummaryReportPage clickOnSummaryReportsTile(){
+		logger.info("clickin on Reports:");
 		reportsTile.click();
-		return new SummaryReportsPage(driver);
+		return new SummaryReportPage(driver);
 	}
 	
 	
 	public ItemReportPage clickOnGlobalSearchLink(){
-		log.info("clickin on Reports:");
+		logger.info("clickin on Reports:");
 		globalSearchLink.click();
 		selectProjectOnSearchMenu.click();
 		globalSearchText.sendKeys("316837");
@@ -73,12 +73,12 @@ public class HomePage extends WebPage{
 	}
 	
 	public boolean isLoginSucsess(){
-		log.info("cheking Reports tile present or not");
+		logger.info("cheking Reports tile present or not");
 		return VerificationHelper.verifyElementPresent(reportsTile);
 	}
 	
 	public GlobelSearchResultPage searchProject(String project){
-		log.info("searching project..");
+		logger.info("searching project..");
 		GlobelSearchPage globelSearchPage = new GlobelSearchPage(driver);
 		return globelSearchPage.searchProject(project);
 	}

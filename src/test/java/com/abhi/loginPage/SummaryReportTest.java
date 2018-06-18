@@ -7,36 +7,39 @@ import org.testng.annotations.Test;
 import com.abhi.PageObject.GlobalHomeIcon;
 import com.abhi.PageObject.GlobelSearchResultPage;
 import com.abhi.PageObject.HomePage;
+import com.abhi.PageObject.MultiProjectRightToolBarPage;
 import com.abhi.PageObject.ProjectDetailsPage;
 import com.abhi.PageObject.ProjectReportListPage;
-import com.abhi.PageObject.ProjectRightToolBarPage;
 import com.abhi.PageObject.ReportFilterPage;
+import com.abhi.PageObject.ReportFilterPage.ReportType;
+import com.abhi.PageObject.SummaryReportPage;
+import com.abhi.PageObject.ProjectRightToolBarPage;
 import com.abhi.PageObject.TcRAResultPage;
+import com.abhi.PageObject.TilePage;
 import com.abhi.testBase.TestBase;
 
-public class ItemReportTest extends TestBase{
-
+public class SummaryReportTest extends TestBase{
 
 	@DataProvider(name="reportListData")
 	public Object[][] dataSource(){
-		return getData("TcRAReportList.xlsx", "ProjectReports");
+		return getData("TcRAReportList.xlsx", "MultiProjectReports");
 	}
 
-
+	
 	@Test(dataProvider="reportListData")
-	public void executeItemReportTest(String reportName, String projectValue, String expectedRows) {
+	public void summaryReportTest(String reportName, String filterKey,String filterValue, String expectedRows) {
 
-		HomePage homePage = new HomePage(driver);
-		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
-		ProjectDetailsPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
-		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
-		ProjectReportListPage projectReportListPage = loadRightToolBarPage.selectReportCommand();
-		ReportFilterPage selectProjectReport = projectReportListPage.selectProjectReport(reportName);
-		TcRAResultPage selectGeneateNow = selectProjectReport.selectGeneateNow();
+		TilePage tilePage = new TilePage(driver);
+		SummaryReportPage summaryReportPage = tilePage.selectReportTile();
+		MultiProjectRightToolBarPage multiProjectRightToolBarPage = summaryReportPage.selectReport(reportName);
+		ReportFilterPage reportFilterPage = multiProjectRightToolBarPage.selectReportCommand(ReportType.MULTIPROJECT);
+		reportFilterPage.setFilterCriteria(filterKey, filterValue);
+		TcRAResultPage selectGeneateNow = reportFilterPage.selectGeneateNow();
 		int rowCount = selectGeneateNow.renderReportAndGetRowCount();
 		int minExpectedRowCount = 1;
 
 		try {
+
 			minExpectedRowCount = Integer.parseInt(expectedRows);
 		} catch (Exception e) {
 		}
@@ -44,6 +47,6 @@ public class ItemReportTest extends TestBase{
 		Assert.assertTrue(rowCount >= minExpectedRowCount, "Resport is not executed. Please verify..");
 
 		new GlobalHomeIcon(driver).clickOnHomeButton();
-		
+
 	}
 }

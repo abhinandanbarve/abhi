@@ -54,7 +54,7 @@ public class Excel_reader {
 						case Cell.CELL_TYPE_NUMERIC:
 							System.out.print(k+",");
 							System.out.print(j+",");
-							dataSets[k][j++] = cell.getStringCellValue();
+							dataSets[k][j++] = String.valueOf(cell.getNumericCellValue());
 							System.out.println(cell.getNumericCellValue());
 							break;
 						case Cell.CELL_TYPE_STRING:

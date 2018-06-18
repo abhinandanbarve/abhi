@@ -1,12 +1,10 @@
 package com.abhi.PageObject;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 
 import com.abhi.helper.Logger.LoggerHelper;
 import com.abhi.testBase.Config;
@@ -18,14 +16,14 @@ public class TcRAResultPage extends WebPage{
 	private final Logger logger = LoggerHelper.getLogger(LoginPage.class);
 
 	@FindBy(xpath = "//*[@id='eq-frame']")
-	public WebElement eQFrame;
+	private WebElement eQFrame;
 	
 	
 	@FindBy(xpath="//div[@id='setting_icon' and @title='Report Options']")
-	WebElement exportOptions;
+	private WebElement exportOptions;
 
 	@FindBy(xpath="//div[@class='js-top-row-section topRowNumber']")
-	WebElement totalRowLabel;
+	private WebElement totalRowLabel;
 
 
 	public TcRAResultPage(WebDriver driver) {
@@ -35,7 +33,7 @@ public class TcRAResultPage extends WebPage{
 	}
 
 
-	public void renderReport(){
+	private void renderReport(){
 		logger.info("rendering report ....");
 		driver.switchTo().frame(eQFrame);
 		waitHelper.waitForElement(driver, totalRowLabel,new Config(TestBase.OR).getTcRALoginWait());
@@ -50,8 +48,6 @@ public class TcRAResultPage extends WebPage{
 			logger.info("checking row counttotalRowCount ...."+totalRowCount);
 			rowCount = Integer.parseInt(totalRowCount.trim());
 		}
-			
-			
 		return rowCount;
 	}
 	
@@ -70,38 +66,9 @@ public class TcRAResultPage extends WebPage{
 		return rowCount;
 	}
 
-
-	
 	public void switchToParentWindow(){
 		logger.info("rendering report ....");
 		driver.switchTo().defaultContent();
 	}
-
 	
-	
-	private String verifyeQResult() {
-		String resultRows = "";
-		try {
-			
-			WebElement eqFrame= driver.findElement(By.id("eq-frame"));
-			driver.switchTo().frame(eqFrame);
-			
-			WebElement reportOption = driver.findElement(By.xpath("//div[@id='setting_icon' and @title='Report Options']"));
-			
-			waitHelper.waitForElement(driver, reportOption,new Config(TestBase.OR).getTcRALoginWait());
-			
-			WebElement rowNumberLabel = driver.findElement(By.xpath("//div[@class='js-top-row-section topRowNumber']"));
-			waitHelper.waitForElement(driver, rowNumberLabel,new Config(TestBase.OR).getTcRALoginWait());
-			
-			resultRows  = rowNumberLabel.getText();
-			
-		} 
-		catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		driver.switchTo().defaultContent();
-		 return resultRows;
-	}
 }
