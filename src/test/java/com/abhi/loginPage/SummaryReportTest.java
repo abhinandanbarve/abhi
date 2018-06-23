@@ -5,15 +5,10 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.abhi.PageObject.GlobalHomeIcon;
-import com.abhi.PageObject.GlobelSearchResultPage;
-import com.abhi.PageObject.HomePage;
 import com.abhi.PageObject.MultiProjectRightToolBarPage;
-import com.abhi.PageObject.ProjectDetailsPage;
-import com.abhi.PageObject.ProjectReportListPage;
 import com.abhi.PageObject.ReportFilterPage;
 import com.abhi.PageObject.ReportFilterPage.ReportType;
 import com.abhi.PageObject.SummaryReportPage;
-import com.abhi.PageObject.ProjectRightToolBarPage;
 import com.abhi.PageObject.TcRAResultPage;
 import com.abhi.PageObject.TilePage;
 import com.abhi.testBase.TestBase;
