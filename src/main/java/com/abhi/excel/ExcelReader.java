@@ -90,7 +90,7 @@ public class ExcelReader {
 	}
 
 	public static void main(String[] args) {
-		String excellocation = "/Users/bsingh5/git/seleniumHybridFramework/hybridFramework/src/main/java/com/hybridFramework/data/TestData.xlsx";
+		String excellocation = "/TestData.xlsx";
 		String sheetName = "LoginTestData";
 		ExcelReader excel = new ExcelReader();
 		excel.getExcelData(excellocation, sheetName);
