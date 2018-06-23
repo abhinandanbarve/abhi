@@ -39,7 +39,7 @@ import org.testng.annotations.BeforeTest;
 import com.abhi.PageObject.HomePage;
 import com.abhi.PageObject.LoginPage;
 import com.abhi.PageObject.LogoutPage;
-import com.abhi.excelReader.Excel_reader;
+import com.abhi.excel.ExcelReader;
 import com.abhi.helper.Wait.WaitHelper;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -57,7 +57,7 @@ public class TestBase {
 
 	public static ExtentReports extent;
 	public static ExtentTest test;
-	public Excel_reader excelreader;
+	public ExcelReader excelreader;
 	public ITestResult result;
 
 	static {
@@ -184,23 +184,15 @@ public class TestBase {
 
 	public void loadPropertiesFile() throws IOException{
 
-		String log4jConfPath = "log4j.properties";
+		String log4jConfPath = System.getProperty("user.dir")+"/src/main/java/com/abhi/config/log4j.properties";
 		PropertyConfigurator.configure(log4jConfPath);
+		
 		OR = new Properties();
 		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/config/config.properties");
 		file = new FileInputStream(f1);
 		OR.load(file);
 		logger.info("loading config.properties");
-
-		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/config/or.properties");
-		file = new FileInputStream(f1);
-		OR.load(file);
-		logger.info("loading or.properties");
-
-		f1 = new File(System.getProperty("user.dir")+"/src/main/java/com/abhi/config/homepage.properties");
-		file = new FileInputStream(f1);
-		OR.load(file);
-		logger.info("loading homepage.properties");
+		
 	}
 
 	public String getScreenShot(String imageName) throws IOException{
@@ -342,7 +334,7 @@ public class TestBase {
 		System.out.println(System.getProperty("user.dir"));
 		String excellocation = System.getProperty("user.dir")+"/src/main/java/com/abhi/data/"+excelName;
 		System.out.println(excellocation);
-		excelreader = new Excel_reader();
+		excelreader = new ExcelReader();
 		return excelreader.getExcelData(excellocation, sheetName);
 	}
 

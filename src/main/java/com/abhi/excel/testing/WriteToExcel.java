@@ -1,7 +1,8 @@
-package com.abhi.excelTutorial;
+package com.abhi.excel.testing;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -16,6 +17,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 
  */
 public class WriteToExcel {
+	
+	public static void main1(String[] args) throws IOException {
+		String excellocation = System.getProperty("user.dir") + "/demo.xlsx";
+		UpdateTestResultInExcel.updateResult(excellocation, "TestReport", "Registration", "Pass");
+		UpdateTestResultInExcel.updateResult(excellocation, "TestReport", "Payment", "Fail");
+		UpdateTestResultInExcel.updateResult(excellocation, "TestReport", "CancelTest", "Pass");
+	}
+	
 	 public static void main(String[] args) 
 	    {
 	        //Blank workbook

@@ -1,4 +1,4 @@
-package com.abhi.excelReader;
+package com.abhi.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,9 +10,9 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class Excel_reader {
+public class ExcelReader {
 	
-	public static final Logger logger  = Logger.getLogger(Excel_reader.class.getName());
+	public static final Logger logger  = Logger.getLogger(ExcelReader.class.getName());
 
 	public String[][] getExcelData(String excellocation, String sheetName) {
 		try {
@@ -92,7 +92,7 @@ public class Excel_reader {
 	public static void main(String[] args) {
 		String excellocation = "/Users/bsingh5/git/seleniumHybridFramework/hybridFramework/src/main/java/com/hybridFramework/data/TestData.xlsx";
 		String sheetName = "LoginTestData";
-		Excel_reader excel = new Excel_reader();
+		ExcelReader excel = new ExcelReader();
 		excel.getExcelData(excellocation, sheetName);
 
 	}
