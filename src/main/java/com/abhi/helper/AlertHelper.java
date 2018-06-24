@@ -1,12 +1,10 @@
 
-package com.abhi.helper.alert;
+package com.abhi.helper;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
-
-import com.abhi.helper.logger.LoggerHelper;
 
 /**
  * @author abhinandan

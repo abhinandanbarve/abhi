@@ -1,5 +1,5 @@
 
-package com.abhi.helper.browser;
+package com.abhi.helper;
 
 import java.util.LinkedList;
 import java.util.Set;
@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import com.abhi.base.TestBase;
-import com.abhi.helper.logger.LoggerHelper;
 
 /**
  * @author abhinandan

@@ -1,10 +1,8 @@
-package com.abhi.helper.generic;
+package com.abhi.helper;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Reporter;
-
-import com.abhi.helper.logger.LoggerHelper;
 
 /**
  * @author abhinandan

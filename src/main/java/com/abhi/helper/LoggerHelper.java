@@ -1,4 +1,4 @@
-package com.abhi.helper.logger;
+package com.abhi.helper;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;

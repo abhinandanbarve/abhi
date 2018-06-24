@@ -27,7 +27,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import com.abhi.excel.ExcelReader;
-import com.abhi.helper.logger.LoggerHelper;
+import com.abhi.helper.LoggerHelper;
 import com.abhi.page.HomePage;
 import com.abhi.page.LoginPage;
 import com.abhi.page.LogoutPage;

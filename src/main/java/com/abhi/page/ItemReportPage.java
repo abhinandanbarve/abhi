@@ -11,8 +11,8 @@ import org.testng.annotations.DataProvider;
 
 import com.abhi.base.Config;
 import com.abhi.base.TestBase;
-import com.abhi.helper.logger.LoggerHelper;
-import com.abhi.helper.wait.StaleElementUtils;
+import com.abhi.helper.LoggerHelper;
+import com.abhi.utility.StaleElementUtils;
 /**
  * 
  * @author abhinandan

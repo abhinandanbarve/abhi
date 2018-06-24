@@ -1,12 +1,10 @@
 
-package com.abhi.helper.javascript;
+package com.abhi.helper;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-import com.abhi.helper.logger.LoggerHelper;
 
 /**
  * @author abhinandan

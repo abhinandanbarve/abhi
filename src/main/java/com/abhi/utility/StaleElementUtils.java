@@ -1,4 +1,4 @@
-package com.abhi.helper.wait;
+package com.abhi.utility;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -11,7 +11,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.abhi.helper.logger.LoggerHelper;
+import com.abhi.helper.LoggerHelper;
 
 public class StaleElementUtils {
     private static final Logger LOGGER = LoggerHelper.getLogger(StaleElementUtils.class);

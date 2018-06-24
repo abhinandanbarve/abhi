@@ -1,4 +1,4 @@
-package com.abhi.helper.wait;
+package com.abhi.helper;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,8 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.abhi.helper.logger.LoggerHelper;
 
 /**
  * @author abhinandan

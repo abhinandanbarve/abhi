@@ -10,9 +10,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
 import com.abhi.base.TestBase;
-import com.abhi.helper.logger.LoggerHelper;
-import com.abhi.helper.wait.StaleElementUtils;
+import com.abhi.helper.LoggerHelper;
 import com.abhi.page.ReportFilterPage.ReportType;
+import com.abhi.utility.StaleElementUtils;
 
 public class ProjectRightToolBarPage extends WebPage{
 

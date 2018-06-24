@@ -1,10 +1,8 @@
-package com.abhi.helper.assertion;
+package com.abhi.helper;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.abhi.helper.logger.LoggerHelper;
 
 /**
  * @author abhinandan

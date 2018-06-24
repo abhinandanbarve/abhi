@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
 import com.abhi.base.TestBase;
-import com.abhi.helper.logger.LoggerHelper;
+import com.abhi.helper.LoggerHelper;
 
 public class TcRAResultPage extends WebPage{
 

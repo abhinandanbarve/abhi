@@ -2,7 +2,7 @@ package com.abhi.page;
 
 import org.openqa.selenium.WebDriver;
 
-import com.abhi.helper.wait.WaitHelper;
+import com.abhi.helper.WaitHelper;
 
 public class WebPage {
 

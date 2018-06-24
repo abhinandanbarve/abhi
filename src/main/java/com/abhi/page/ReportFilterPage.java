@@ -16,9 +16,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
 import com.abhi.base.TestBase;
-import com.abhi.helper.assertion.VerificationHelper;
-import com.abhi.helper.generic.GenericHelper;
-import com.abhi.helper.logger.LoggerHelper;
+import com.abhi.helper.GenericHelper;
+import com.abhi.helper.LoggerHelper;
+import com.abhi.helper.VerificationHelper;
 
 public class ReportFilterPage extends WebPage{
 
