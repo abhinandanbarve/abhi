@@ -12,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.abhi.utility.StaleElementUtils;
+
 /**
  * @author abhinandan
  * 
@@ -57,9 +59,16 @@ public class WaitHelper {
 	
 	
 	public void waitForElement(WebDriver driver, WebElement element, long timeout) {
-		WebDriverWait wait = new WebDriverWait(driver, timeout);		
-		wait.until(ExpectedConditions.visibilityOf(element));
-		Log.info("element found..."+element.getText());
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, timeout);		
+			wait.until(ExpectedConditions.visibilityOf(element));
+			Log.info("element found..."+element.getText());
+		} catch (StaleElementReferenceException exception) {	
+			Log.error("Stale element exception. please check impl" + exception);
+			StaleElementUtils.refreshElement(driver, element);
+			waitForElement(driver,element, timeout);
+		}
 	}
 	
 	public WebElement waitForElement(WebDriver driver,long time,WebElement element){

@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class GlobelSearchPage extends WebPage{
@@ -19,6 +18,9 @@ public class GlobelSearchPage extends WebPage{
 
 	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//ul/li[contains(text(),'Projects/Opportunities')]")
 	private WebElement projectMenuOnGlobalSearch;
+	
+	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//ul/li[contains(text(),'Documents')]")
+	private WebElement documentsMenuOnGlobalSearch;
 
 	@FindBy(xpath="//aw-search-global//aw-search-box//input[@type='text']")
 	private WebElement globalSearchText;
@@ -30,7 +32,7 @@ public class GlobelSearchPage extends WebPage{
 	public GlobelSearchPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, globalSearchButton,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, globalSearchButton,Config.getInstance().getExplicitWait());
 		logger.debug("Loading GlobelSearchPage done ...");
 	}
 
@@ -42,6 +44,11 @@ public class GlobelSearchPage extends WebPage{
 	private void selectProjectOnSearchMenu(){
 		logger.info("clicking on Project On Search Menu...");
 		this.projectMenuOnGlobalSearch.click();
+	}
+	
+	private void selectDocumentOnSearchMenu(){
+		logger.info("clicking on Document On Search Menu...");
+		this.documentsMenuOnGlobalSearch.click();
 	}
 
 	private void enterSearchCriteria(String searchValue){
@@ -59,6 +66,14 @@ public class GlobelSearchPage extends WebPage{
 		clickOnGlobalSearchLink();
 		selectProjectOnSearchMenu();
 		enterSearchCriteria(searchValue);
+		clickOnSearchButton();
+		return new GlobelSearchResultPage(driver);
+	}
+
+	public GlobelSearchResultPage searchDocuments(String document) {
+		clickOnGlobalSearchLink();
+		selectDocumentOnSearchMenu();
+		enterSearchCriteria(document);
 		clickOnSearchButton();
 		return new GlobelSearchResultPage(driver);
 	}

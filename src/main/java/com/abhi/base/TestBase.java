@@ -42,13 +42,13 @@ public class TestBase {
 
 	public WebDriver driver;
 	public static Properties OR;
-	public Config config;
+	
 	public File f1;
 	public FileInputStream file;
 
 	public static ExtentReports extent;
 	public static ExtentTest test;
-	public ExcelReader excelreader;
+	public ExcelReader excelReader;
 	public ITestResult result;
 
 	static {
@@ -62,15 +62,14 @@ public class TestBase {
 
 		try {
 			loadPropertiesFile();
-			config = new Config(OR);
 			Assert.assertTrue(OR != null && OR.size() > 0, "Exception occured while loading configuration files.");
 		} catch (Exception exception) {
 			logger.error("Exception occured while loading configuration files.", exception);
 			throw exception;
 		}
 
-		getBrowser(config.getBrowser());
-		driver.get(config.getWebsite());
+		getBrowser(Config.getInstance().getBrowser());
+		driver.get(Config.getInstance().getWebsite());
 		driver.manage().window().maximize();
 
 		HomePage homePage = loginToApplication();
@@ -90,7 +89,7 @@ public class TestBase {
 	
 	public HomePage loginToApplication() {		
 		LoginPage loginPage = new LoginPage(driver);
-		return loginPage.loginToApplication(config.getUserName(), config.getPassword());
+		return loginPage.loginToApplication(Config.getInstance().getUserName(), Config.getInstance().getPassword());
 
 	}
 
@@ -238,8 +237,8 @@ public class TestBase {
 		System.out.println(System.getProperty("user.dir"));
 		String excellocation = System.getProperty("user.dir")+"/src/main/resources/data/"+excelName;
 		System.out.println(excellocation);
-		excelreader = new ExcelReader();
-		return excelreader.getExcelData(excellocation, sheetName);
+		excelReader = new ExcelReader();
+		return excelReader.getExcelData(excellocation, sheetName);
 	}
 
 	public static void updateResultupdateResult(int indexSI,  String screenShotLocation,String response) throws IOException {

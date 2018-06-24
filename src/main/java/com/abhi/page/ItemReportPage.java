@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.DataProvider;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.utility.StaleElementUtils;
 /**
@@ -33,7 +32,7 @@ public class ItemReportPage extends WebPage{
 		PageFactory.initElements(driver, this);
 		try
 		{
-			waitHelper.waitForElement(driver, generateReportButton,new Config(TestBase.OR).getExplicitWait());
+			waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
 		}
 		catch(StaleElementReferenceException e )
 		{
@@ -41,7 +40,7 @@ public class ItemReportPage extends WebPage{
 			
 			StaleElementUtils.refreshElement(driver, generateReportButton);
 		}
-		waitHelper.waitForElement(driver, generateReportButton,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
 		
 		}
 		
@@ -87,7 +86,7 @@ public class ItemReportPage extends WebPage{
 		
 		WebElement generateNowButton = driver.findElement(By.xpath("//button[@id='runReportBtn']"));
 		
-		waitHelper.waitForElement(driver, generateNowButton,new Config(TestBase.OR).getTcRALoginWait());
+		waitHelper.waitForElement(driver, generateNowButton,Config.getInstance().getTcRALoginWait());
 		generateNowButton.click();
 		
 		
@@ -103,10 +102,10 @@ public class ItemReportPage extends WebPage{
 			
 			WebElement reportOption = driver.findElement(By.xpath("//div[@id='setting_icon' and @title='Report Options']"));
 			
-			waitHelper.waitForElement(driver, reportOption,new Config(TestBase.OR).getTcRALoginWait());
+			waitHelper.waitForElement(driver, reportOption,Config.getInstance().getTcRALoginWait());
 			
 			WebElement rowNumberLabel = driver.findElement(By.xpath("//div[@class='js-top-row-section topRowNumber']"));
-			waitHelper.waitForElement(driver, rowNumberLabel,new Config(TestBase.OR).getTcRALoginWait());
+			waitHelper.waitForElement(driver, rowNumberLabel,Config.getInstance().getTcRALoginWait());
 			
 			resultRows  = rowNumberLabel.getText();
 			

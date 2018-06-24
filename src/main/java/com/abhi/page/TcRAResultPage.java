@@ -29,14 +29,14 @@ public class TcRAResultPage extends WebPage{
 	public TcRAResultPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, eQFrame,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, eQFrame,Config.getInstance().getExplicitWait());
 	}
 
 
 	private void renderReport(){
 		logger.info("rendering report ....");
 		driver.switchTo().frame(eQFrame);
-		waitHelper.waitForElement(driver, totalRowLabel,new Config(TestBase.OR).getTcRALoginWait());
+		waitHelper.waitForElement(driver, totalRowLabel,Config.getInstance().getTcRALoginWait());
 	}
 
 	private int getRowCount() {

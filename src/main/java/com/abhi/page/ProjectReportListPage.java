@@ -22,7 +22,7 @@ public class ProjectReportListPage extends WebPage {
 	public ProjectReportListPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportList,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, reportList,Config.getInstance().getExplicitWait());
 	}
 
 	public ProjectReportListPage(WebDriver driver, int waitTime) {

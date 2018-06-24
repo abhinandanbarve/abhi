@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 /**
@@ -33,7 +32,7 @@ public class LoginPage extends WebPage{
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, userName,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, userName,Config.getInstance().getExplicitWait());
 	}
 
 

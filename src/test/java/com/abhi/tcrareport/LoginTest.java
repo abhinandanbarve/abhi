@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.abhi.base.Config;
 import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.HomePage;
@@ -23,11 +24,11 @@ public class LoginTest extends TestBase{
 	public void testLoginToApplication(){
 		log.info(LoginTest.class.getName()+" started");
 		
-		driver.get(config.getWebsite());
+		driver.get(Config.getInstance().getWebsite());
 		
 		LoginPage loginPage = new LoginPage(driver);
 		
-		loginPage.loginToApplication(config.getUserName(), config.getPassword());
+		loginPage.loginToApplication(Config.getInstance().getUserName(), Config.getInstance().getPassword());
 		
 		HomePage homePage = new HomePage(driver);
 		

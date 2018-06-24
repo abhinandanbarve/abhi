@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class LogoutPage extends WebPage{
@@ -23,7 +22,7 @@ public class LogoutPage extends WebPage{
 	public LogoutPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, userNameLink,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, userNameLink,Config.getInstance().getExplicitWait());
 	}
 
 	private void clickOnUserNameLink(){

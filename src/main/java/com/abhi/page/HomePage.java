@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.helper.VerificationHelper;
 
@@ -50,7 +49,7 @@ public class HomePage extends WebPage{
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportsTile,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, reportsTile,Config.getInstance().getExplicitWait());
 	}
 	
 	
@@ -67,7 +66,7 @@ public class HomePage extends WebPage{
 		selectProjectOnSearchMenu.click();
 		globalSearchText.sendKeys("316837");
 		globalSearchButton.click();
-		waitHelper.waitForElement(driver, selectProject,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, selectProject,Config.getInstance().getExplicitWait());
 		selectProject.click();
 		return new ItemReportPage(driver);		
 	}
@@ -81,6 +80,13 @@ public class HomePage extends WebPage{
 		logger.info("searching project..");
 		GlobelSearchPage globelSearchPage = new GlobelSearchPage(driver);
 		return globelSearchPage.searchProject(project);
+	}
+
+
+	public GlobelSearchResultPage searchDocuments(String document) {
+		logger.info("searching document..");
+		GlobelSearchPage globelSearchPage = new GlobelSearchPage(driver);
+		return globelSearchPage.searchDocuments(document);
 	}
 
 	

@@ -46,14 +46,14 @@ public class ReportFilterPage extends WebPage{
 		super(driver);
 		this.reportType = ReportType.PROJECT;
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, runReportBtn,new Config(TestBase.OR).getTcRALoginWait());
+		waitHelper.waitForElement(driver, runReportBtn,Config.getInstance().getTcRALoginWait());
 	}	
 
 	public ReportFilterPage(WebDriver driver, ReportType reportType) {
 		super(driver);
 		this.reportType = reportType;
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, runReportBtn,new Config(TestBase.OR).getTcRALoginWait());
+		waitHelper.waitForElement(driver, runReportBtn,Config.getInstance().getTcRALoginWait());
 	}
 
 	public ReportFilterPage(WebDriver driver, ReportType reportType, int waitTime) {
@@ -153,7 +153,7 @@ public class ReportFilterPage extends WebPage{
 
 			WebElement textWebElement= filterValueComponent.findElement(By.cssSelector("input[type='text']"));
 
-			waitHelper.waitForElement(driver, textWebElement,new Config(TestBase.OR).getImplicitWait());
+			waitHelper.waitForElement(driver, textWebElement,Config.getInstance().getImplicitWait());
 
 
 			if(VerificationHelper.verifyElementNotPresent(textWebElement)) 

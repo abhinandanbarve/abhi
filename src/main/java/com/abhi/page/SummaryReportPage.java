@@ -32,7 +32,7 @@ public class SummaryReportPage extends WebPage{
 	public SummaryReportPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportItem,new Config(TestBase.OR).getTcRALoginWait());
+		waitHelper.waitForElement(driver, reportItem,Config.getInstance().getTcRALoginWait());
 	}
 
 

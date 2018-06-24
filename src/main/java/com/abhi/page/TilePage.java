@@ -21,7 +21,7 @@ public class TilePage extends WebPage{
 	public TilePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportsTile,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, reportsTile,Config.getInstance().getExplicitWait());
 	}
 
 	

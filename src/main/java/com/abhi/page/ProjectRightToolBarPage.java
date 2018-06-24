@@ -26,6 +26,9 @@ public class ProjectRightToolBarPage extends WebPage{
 	@FindBy(xpath="//aw-command//button[@id='Awp0InContextReports'][@title='Generate Report']")
 	WebElement generateReportButton;
 
+	@FindBy(xpath="//aw-command//button[@id='AP4_AddProjectDocument'][@title='Add Document']")
+	WebElement addDocumentButton;
+
 	
 	public ProjectRightToolBarPage(WebDriver driver) 	{
 
@@ -33,7 +36,7 @@ public class ProjectRightToolBarPage extends WebPage{
 		PageFactory.initElements(driver, this);
 		try
 		{
-			waitHelper.waitForElement(driver, generateReportButton,new Config(TestBase.OR).getExplicitWait());
+			waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
 		}
 		catch(StaleElementReferenceException e )
 		{
@@ -41,7 +44,7 @@ public class ProjectRightToolBarPage extends WebPage{
 
 			StaleElementUtils.refreshElement(driver, generateReportButton);
 		}
-		waitHelper.waitForElement(driver, generateReportButton,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
 
 	}
 
@@ -51,6 +54,18 @@ public class ProjectRightToolBarPage extends WebPage{
 
 	}
 
+	private void clickOnAddDocumentButton(){
+		logger.info("clicking on add document button...");
+		this.addDocumentButton.click();
+
+	}
+	
+	public AddProjectDocumentPage selectAddDocumentCommand(){
+		clickOnAddDocumentButton();
+		return new AddProjectDocumentPage(driver);
+	}
+	
+	
 	public ProjectReportListPage selectReportCommand(){		
 		
 		try

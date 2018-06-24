@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class GlobalHomeIcon extends WebPage{
@@ -23,7 +22,7 @@ public class GlobalHomeIcon extends WebPage{
 	public GlobalHomeIcon(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, globelHomeBtn,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, globelHomeBtn, Config.getInstance().getExplicitWait());
 	}
 
 	public void clickOnHomeButton(){

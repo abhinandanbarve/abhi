@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class GlobelSearchResultPage extends WebPage{
@@ -15,14 +14,17 @@ public class GlobelSearchResultPage extends WebPage{
 	
 	private final Logger logger = LoggerHelper.getLogger(GlobelSearchResultPage.class);
 
-	@FindBy(xpath="//div[@ng-controller='awTableContainerController']//table/tbody/tr/td//a[@title='Open']")
+	//@FindBy(xpath="//div[@ng-controller='awTableContainerController']//table/tbody/tr/td//a[@title='Open']")
+	//private WebElement selectProject;
+	
+	@FindBy(xpath="//div[@class='aw-layout-workarea']//div[contains(@class,'aw-layout-primaryWorkarea')]//ul//li//a[@title='Open']")
 	private WebElement selectProject;
 	
-
+	
 	public GlobelSearchResultPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, selectProject,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, selectProject,Config.getInstance().getExplicitWait());
 	}
 	
 	private void openProjectDetails(){
@@ -33,6 +35,11 @@ public class GlobelSearchResultPage extends WebPage{
 	public ProjectDetailsPage openProjectDetails(String searchValue){		
 		openProjectDetails();
 		return new ProjectDetailsPage(driver);
+	}
+
+	public DocumentDetailsPage openDocumentsDetails(String searchValue){		
+		openProjectDetails();
+		return new DocumentDetailsPage(driver);
 	}
 
 	

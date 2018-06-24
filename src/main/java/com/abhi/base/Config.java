@@ -2,51 +2,58 @@ package com.abhi.base;
 
 import java.util.Properties;
 
-public class Config extends TestBase{
+public  class Config extends TestBase{
 	
-	private Properties OR;
+	private Properties properties;
 	
-	public Config(Properties OR){
-		this.OR = OR;
+	private static Config config = null;
+	
+	private Config(){
+		this.properties = TestBase.OR;
+	}
+	
+	public static Config getInstance(){
+		if(config != null)
+			return config;
+		else {
+			config = new Config(); 	
+			return config;
+		}
 	}
 	
 	public String getUserName() {
-		return OR.getProperty("Username");
+		return properties.getProperty("Username");
 	}
 
 	public String getPassword() {
-		return OR.getProperty("Password");
+		return properties.getProperty("Password");
 	}
 
 	public String getWebsite() {
-		return OR.getProperty("Website");
+		return properties.getProperty("Website");
 	}
 
 	public int getPageLoadTimeOut() {
-		return Integer.parseInt(OR.getProperty("PageLoadTimeOut"));
+		return Integer.parseInt(properties.getProperty("PageLoadTimeOut"));
 	}
 
 	public int getImplicitWait() {
-		return Integer.parseInt(OR.getProperty("ImplcitWait"));
+		return Integer.parseInt(properties.getProperty("ImplcitWait"));
 	}
 
 	public int getExplicitWait() {
-		return Integer.parseInt(OR.getProperty("ExplicitWait"));
+		return Integer.parseInt(properties.getProperty("ExplicitWait"));
 	}
 	
 	public int getTcRALoginWait() {
-		return Integer.parseInt(OR.getProperty("TcRALoginWait"));
+		return Integer.parseInt(properties.getProperty("TcRALoginWait"));
 	}
 
-	public String getDbType() {
-		return OR.getProperty("DataBase.Type");
-	}
-
-	public String getDbConnStr() {
-		return OR.getProperty("DtaBase.ConnectionStr");
-	}
 	public String getBrowser() {
-		return OR.getProperty("Browser");
+		return properties.getProperty("Browser");
 	}
 
+	public String getIsSSOMode() {
+		return properties.getProperty("IsSSOMode");
+	}
 }

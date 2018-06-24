@@ -33,7 +33,7 @@ public class MultiProjectRightToolBarPage extends WebPage{
 		PageFactory.initElements(driver, this);
 		try
 		{
-			waitHelper.waitForElement(driver, generateReportButton,new Config(TestBase.OR).getExplicitWait());
+			waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
 		}
 		catch(StaleElementReferenceException e )
 		{
@@ -41,7 +41,7 @@ public class MultiProjectRightToolBarPage extends WebPage{
 
 			StaleElementUtils.refreshElement(driver, generateReportButton);
 		}
-		waitHelper.waitForElement(driver, generateReportButton,new Config(TestBase.OR).getExplicitWait());
+		waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
 
 	}
 
