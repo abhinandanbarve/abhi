@@ -15,10 +15,11 @@ public class GlobelSearchResultPage extends WebPage{
 	private final Logger logger = LoggerHelper.getLogger(GlobelSearchResultPage.class);
 
 	//@FindBy(xpath="//div[@ng-controller='awTableContainerController']//table/tbody/tr/td//a[@title='Open']")
-	//private WebElement selectProject;
+	@FindBy(xpath="//div[@class='aw-layout-workarea']//div[contains(@class,'aw-layout-primaryWorkarea')]//ul//li//a[@title='Open']")	
+	private WebElement selectProject;
 	
 	@FindBy(xpath="//div[@class='aw-layout-workarea']//div[contains(@class,'aw-layout-primaryWorkarea')]//ul//li//a[@title='Open']")
-	private WebElement selectProject;
+	private WebElement selectDocument;
 	
 	
 	public GlobelSearchResultPage(WebDriver driver) {
@@ -27,9 +28,20 @@ public class GlobelSearchResultPage extends WebPage{
 		waitHelper.waitForElement(driver, selectProject,Config.getInstance().getExplicitWait());
 	}
 	
+	public GlobelSearchResultPage(WebDriver driver, int seconds) {
+		super(driver);
+		PageFactory.initElements(driver, this);
+		waitHelper.waitForElement(driver, selectDocument,seconds);
+	}
+	
 	private void openProjectDetails(){
 		logger.info("opening Project Details...");
 		this.selectProject.click();
+	}
+	
+	private void openDocumentsDetails(){
+		logger.info("opening Document Details...");
+		this.selectDocument.click();
 	}
 
 	public ProjectDetailsPage openProjectDetails(String searchValue){		
@@ -38,7 +50,7 @@ public class GlobelSearchResultPage extends WebPage{
 	}
 
 	public DocumentDetailsPage openDocumentsDetails(String searchValue){		
-		openProjectDetails();
+		openDocumentsDetails();
 		return new DocumentDetailsPage(driver);
 	}
 

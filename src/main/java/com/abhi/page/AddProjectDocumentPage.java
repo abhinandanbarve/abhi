@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
+import com.abhi.helper.GenericHelper;
 import com.abhi.helper.LoggerHelper;
 
 public class AddProjectDocumentPage extends WebPage{
@@ -48,16 +49,19 @@ public class AddProjectDocumentPage extends WebPage{
 		
 		setFileToUpload(strFilePath);
 		try {
-			File f1 = new File(strFilePath);
-			String fileName = f1.getName();
-
-			WebElement findElement = driver.findElement(By.xpath("//dnvgl-file-upload//div//div[contains(text(),'"+fileName+"')]"));
-			String text = findElement.getText();
+//			File f1 = new File(strFilePath);
+//			String fileName = f1.getName();
+//
+//			WebElement findElement = driver.findElement(By.xpath("//dnvgl-file-upload//div//div[contains(text(),'"+fileName+"')]"));
+//			String text = findElement.getText();
+			Thread.sleep(2000);
+			clickOnCreateButton();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		clickOnCreateButton();
+		
+		
 
 		/*
 $x("//ul[@id='noty_bottom_layout_container']//span[@class='noty_text' and contains(text(),'Files have been uploaded successfully.')]")

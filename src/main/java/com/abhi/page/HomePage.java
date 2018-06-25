@@ -83,10 +83,10 @@ public class HomePage extends WebPage{
 	}
 
 
-	public GlobelSearchResultPage searchDocuments(String document) {
+	public GlobelSearchResultPage searchDocuments(String document, int timeout) {
 		logger.info("searching document..");
 		GlobelSearchPage globelSearchPage = new GlobelSearchPage(driver);
-		return globelSearchPage.searchDocuments(document);
+		return globelSearchPage.searchDocuments(document, timeout);
 	}
 
 	

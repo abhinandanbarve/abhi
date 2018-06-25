@@ -70,12 +70,13 @@ public class GlobelSearchPage extends WebPage{
 		return new GlobelSearchResultPage(driver);
 	}
 
-	public GlobelSearchResultPage searchDocuments(String document) {
+	public GlobelSearchResultPage searchDocuments(String document, int timeout) {
+		
 		clickOnGlobalSearchLink();
 		selectDocumentOnSearchMenu();
 		enterSearchCriteria(document);
-		clickOnSearchButton();
-		return new GlobelSearchResultPage(driver);
+		clickOnSearchButton();			
+		return new GlobelSearchResultPage(driver,timeout);
 	}
 
 }

@@ -123,6 +123,7 @@ public class TestBase {
 		try 
 		{
 			driver.close();
+			driver.quit();
 		} 
 		catch (Exception exception) 
 		{
@@ -130,7 +131,9 @@ public class TestBase {
 			try 
 			{
 				driver.close();
-			} catch (Exception exception2) 
+				driver.quit();				
+			} 
+			catch (Exception exception2) 
 			{
 				logger.error("Exception occured while closing Browser second time.", exception);
 				isOperationSuccess = false;
@@ -239,6 +242,30 @@ public class TestBase {
 		System.out.println(excellocation);
 		excelReader = new ExcelReader();
 		return excelReader.getExcelData(excellocation, sheetName);
+	}
+	
+	public File getPhysicalDocument(String filePath){
+
+		if(filePath != null && new File(filePath).exists())
+			return new File(filePath);
+
+		Calendar calendar = Calendar.getInstance();
+		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
+		
+		String destinationDocument = formater.format(calendar.getTime());
+		String sourceDocument = System.getProperty("user.dir")+"/src/main/resources/sample-data/document1.pdf";
+
+		File sourceFile = new File(sourceDocument);
+		File destinationFile = new File(System.getProperty("user.dir")+"/cache/"+destinationDocument+".pdf");
+
+		try {
+			FileUtils.copyFile(sourceFile, destinationFile);
+		} catch (Exception exception) {
+			Assert.fail("Expected document does not exist", exception);
+		}
+
+		return destinationFile;
+
 	}
 
 	public static void updateResultupdateResult(int indexSI,  String screenShotLocation,String response) throws IOException {

@@ -51,6 +51,7 @@ public class CreateCommentPage extends WebPage{
 	
 	private void enterCommentPage(String page) {
 		logger.info("entering Comment page...."+page);
+		commentPageText.clear();
 		commentPageText.sendKeys(page);
 	}
 	

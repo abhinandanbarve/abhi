@@ -1,13 +1,14 @@
 package com.abhi.tcrareport;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.io.IOException;
 
-import org.testng.Assert;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
 
 import com.abhi.base.TestBase;
+import com.abhi.helper.LoggerHelper;
 import com.abhi.page.AddProjectDocumentPage;
 import com.abhi.page.CreateCommentPage;
 import com.abhi.page.DocumentDetailsPage;
@@ -20,20 +21,16 @@ import com.abhi.page.ProjectRightToolBarPage;
 
 public class CreateCommentTest extends TestBase{
 
+	private final Logger logger = LoggerHelper.getLogger(CreateCommentTest.class);
 
+	
 	@Test
 	public void documentUploadTest() {
 
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat formater = new SimpleDateFormat("dd-MM-yyyy-hh-mm-ss");
-		String strFileName = formater.format(calendar.getTime());
-
 		String projectValue = "abhi-top-1.0";
-		File sourceFile = new File("C:\\Abhinandan\\BHLKCL.pdf");
 
-		File destinationFile = new File("C:\\Abhinandan\\"+strFileName+".pdf");
-
-		sourceFile.renameTo(destinationFile);
+		File document = getPhysicalDocument("");
+		String fileName = FilenameUtils.removeExtension(document.getName());
 
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
@@ -42,25 +39,31 @@ public class CreateCommentTest extends TestBase{
 		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
 
 		AddProjectDocumentPage addProjectDocumentPage = loadRightToolBarPage.selectAddDocumentCommand();
-		addProjectDocumentPage.uploadDocument(destinationFile.getAbsolutePath());
+		addProjectDocumentPage.uploadDocument(document.getAbsolutePath());
 
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		for (int i = 0; i < 6; i++) {
+			try {
+				new GlobalHomeIcon(driver).clickOnHomeButton();
+				homePage = new HomePage(driver);
+				searchResultPage = homePage.searchDocuments(fileName,5);
+				break;
+			} catch (Exception exception) {
+				logger.warn("Search document not found. It seems document has not indexed yet."+ exception.getMessage());
+			}
+		}	
+		
 
-		Assert.assertTrue(true, "Resport is not executed. Please verify..");
-		new GlobalHomeIcon(driver).clickOnHomeButton();
-
-		homePage = new HomePage(driver);
-		searchResultPage = homePage.searchDocuments(strFileName);
-		DocumentDetailsPage openDocumentsDetails = searchResultPage.openDocumentsDetails(strFileName);
+		
+		DocumentDetailsPage openDocumentsDetails = searchResultPage.openDocumentsDetails(fileName);
 		openDocumentsDetails.clickOnDocumentsCommentsTab();
 		DocumentsRightToolBarPage loadRightToolBarPage2 = openDocumentsDetails.loadRightToolBarPage();
 		CreateCommentPage createCommentPage = loadRightToolBarPage2.selectAddCommentCommand();
-		createCommentPage.createComment(strFileName, "1", "a", "Content for "+ strFileName);
+		createCommentPage.createComment(fileName, "1", "a", "Content for "+ fileName);
+	}
+
+	public static void main(String[] args) throws IOException {
+
+		new CreateCommentTest().getPhysicalDocument(null);
 	}
 
 }
