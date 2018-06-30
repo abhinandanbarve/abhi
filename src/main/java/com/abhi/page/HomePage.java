@@ -49,7 +49,7 @@ public class HomePage extends WebPage{
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportsTile,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(reportsTile,Config.getInstance().getExplicitWait());
 	}
 	
 	
@@ -66,7 +66,7 @@ public class HomePage extends WebPage{
 		selectProjectOnSearchMenu.click();
 		globalSearchText.sendKeys("316837");
 		globalSearchButton.click();
-		waitHelper.waitForElement(driver, selectProject,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( selectProject,Config.getInstance().getExplicitWait());
 		selectProject.click();
 		return new ItemReportPage(driver);		
 	}

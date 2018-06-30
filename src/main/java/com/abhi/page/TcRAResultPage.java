@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class TcRAResultPage extends WebPage{
@@ -29,14 +28,14 @@ public class TcRAResultPage extends WebPage{
 	public TcRAResultPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, eQFrame,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(eQFrame,Config.getInstance().getExplicitWait());
 	}
 
 
 	private void renderReport(){
 		logger.info("rendering report ....");
 		driver.switchTo().frame(eQFrame);
-		waitHelper.waitForElement(driver, totalRowLabel,Config.getInstance().getTcRALoginWait());
+		waitHelper.waitForElement(totalRowLabel,Config.getInstance().getTcRALoginWait());
 	}
 
 	private int getRowCount() {

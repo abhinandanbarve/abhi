@@ -22,7 +22,7 @@ public class GlobalHomeIcon extends WebPage{
 	public GlobalHomeIcon(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, globelHomeBtn, Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( globelHomeBtn, Config.getInstance().getExplicitWait());
 	}
 
 	public void clickOnHomeButton(){

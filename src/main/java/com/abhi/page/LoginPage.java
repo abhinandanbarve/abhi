@@ -32,7 +32,7 @@ public class LoginPage extends WebPage{
 	public LoginPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, userName,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( userName,Config.getInstance().getExplicitWait());
 	}
 
 

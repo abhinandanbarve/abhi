@@ -3,7 +3,6 @@ package com.abhi.page;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -15,7 +14,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.GenericHelper;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.helper.VerificationHelper;
@@ -46,21 +44,21 @@ public class ReportFilterPage extends WebPage{
 		super(driver);
 		this.reportType = ReportType.PROJECT;
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, runReportBtn,Config.getInstance().getTcRALoginWait());
+		waitHelper.waitForElement(runReportBtn,Config.getInstance().getTcRALoginWait());
 	}	
 
 	public ReportFilterPage(WebDriver driver, ReportType reportType) {
 		super(driver);
 		this.reportType = reportType;
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, runReportBtn,Config.getInstance().getTcRALoginWait());
+		waitHelper.waitForElement(runReportBtn,Config.getInstance().getTcRALoginWait());
 	}
 
 	public ReportFilterPage(WebDriver driver, ReportType reportType, int waitTime) {
 		super(driver);
 		this.reportType = reportType;
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, runReportBtn,waitTime);
+		waitHelper.waitForElement(runReportBtn,waitTime);
 	}
 	
 
@@ -153,7 +151,7 @@ public class ReportFilterPage extends WebPage{
 
 			WebElement textWebElement= filterValueComponent.findElement(By.cssSelector("input[type='text']"));
 
-			waitHelper.waitForElement(driver, textWebElement,Config.getInstance().getImplicitWait());
+			waitHelper.waitForElement(textWebElement,Config.getInstance().getImplicitWait());
 
 
 			if(VerificationHelper.verifyElementNotPresent(textWebElement)) 

@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class ProjectReportListPage extends WebPage {
@@ -22,13 +21,13 @@ public class ProjectReportListPage extends WebPage {
 	public ProjectReportListPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportList,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(reportList,Config.getInstance().getExplicitWait());
 	}
 
 	public ProjectReportListPage(WebDriver driver, int waitTime) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportList,waitTime);
+		waitHelper.waitForElement(reportList,waitTime);
 	}
 	
 	private void selectReport(String reportName){

@@ -1,6 +1,6 @@
 package com.abhi.page;
 
-import java.io.File;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.helper.GenericHelper;
+import com.abhi.helper.JavaScriptHelper;
 import com.abhi.helper.LoggerHelper;
 
 public class AddProjectDocumentPage extends WebPage{
@@ -32,7 +32,7 @@ public class AddProjectDocumentPage extends WebPage{
 	public AddProjectDocumentPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, chooseFilesButton,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElementToClick(chooseFilesButton,Config.getInstance().getExplicitWait());
 	}
 
 	private void clickOnCreateButton(){
@@ -40,34 +40,71 @@ public class AddProjectDocumentPage extends WebPage{
 		createButton.click();		
 	}
 
-	private void setFileToUpload(String strFilePath){
-		logger.info("clicking on choose Files button...");
-		inputFileType.sendKeys(strFilePath);		
+	private void selectFileToUpload(String strFilePath){
+		logger.info("clicking on choose Files button...");		
+
+		String js = "arguments[0].style.height='auto'; arguments[0].style.visibility='visible';";
+		new JavaScriptHelper(driver).executeScript(js, inputFileType);
+		waitHelper.waitForElement(inputFileType,5);
+		inputFileType.sendKeys(strFilePath);
 	}
 
-	public void uploadDocument(String strFilePath){	
-		
-		setFileToUpload(strFilePath);
+	public void uploadDocument(String strFilePath){			
+		logger.info("upload Documentin progress...");
+		boolean isAlertVisible = true;
+		int counter = 11;
+		for(int i=0; i < 4; i++)
+		{
+			try {
+				selectFileToUpload(strFilePath);
+				waitHelper.waitForElement(createButton,2);
+				clickOnCreateButton();
+				break;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		try {
-//			File f1 = new File(strFilePath);
-//			String fileName = f1.getName();
-//
-//			WebElement findElement = driver.findElement(By.xpath("//dnvgl-file-upload//div//div[contains(text(),'"+fileName+"')]"));
-//			String text = findElement.getText();
-			Thread.sleep(2000);
-			clickOnCreateButton();
+			waitHelper.waitForElementToPresence(By.xpath("//ul[@id='noty_bottom_layout_container']//span[@class='noty_text' and contains(text(),'Files have been uploaded successfully.')]"), Config.getInstance().getExplicitWait());
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
-		/*
+		while(isAlertVisible || counter == 10) {
+			List<WebElement> findElements = null;
+			try {	
+				
+				findElements = driver.findElements(By.xpath("//ul[@id='noty_bottom_layout_container']//div[contains(@class,'noty_close')]"));
+
+				for (WebElement webElement : findElements) {
+					
+					try {
+						webElement.click();	
+						webElement.click();	
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if(findElements == null || findElements.size() ==0)
+				isAlertVisible = false;
+			counter++;
+		}
+	}
+}
+
+
+/*
 $x("//ul[@id='noty_bottom_layout_container']//span[@class='noty_text' and contains(text(),'Files have been uploaded successfully.')]")
 $x("//ul[@id='noty_bottom_layout_container']//span[@class='noty_text' and contains(text(),'Initiating file upload. Please be patient, this may take few minutes depending upon your internet speed.')]")
 Documents have been created successfully.
 $x("//ul[@id='noty_bottom_layout_container']//span[@class='noty_text' and contains(text(),'Files have been uploaded successfully.')]")
-		 */
-	}
-}
+
+ $x()
+
+ *
+ */

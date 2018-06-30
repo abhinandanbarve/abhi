@@ -71,7 +71,7 @@ public class TestBase {
 		getBrowser(Config.getInstance().getBrowser());
 		driver.get(Config.getInstance().getWebsite());
 		driver.manage().window().maximize();
-
+		driver.manage().deleteAllCookies();
 		HomePage homePage = loginToApplication();
 		boolean isLoginSucsess = homePage.isLoginSucsess();
 		Assert.assertTrue(isLoginSucsess,"Login to Teamcenter application fail. Please verify credentials.");

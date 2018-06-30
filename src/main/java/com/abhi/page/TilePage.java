@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class TilePage extends WebPage{
@@ -21,7 +20,7 @@ public class TilePage extends WebPage{
 	public TilePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportsTile,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(reportsTile,Config.getInstance().getExplicitWait());
 	}
 
 	

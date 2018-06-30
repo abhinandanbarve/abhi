@@ -41,24 +41,28 @@ public class CreateCommentTest extends TestBase{
 		AddProjectDocumentPage addProjectDocumentPage = loadRightToolBarPage.selectAddDocumentCommand();
 		addProjectDocumentPage.uploadDocument(document.getAbsolutePath());
 
+	 //As Indexing has issues lets search via traversing to Documents folder
 		for (int i = 0; i < 6; i++) {
 			try {
 				new GlobalHomeIcon(driver).clickOnHomeButton();
 				homePage = new HomePage(driver);
-				searchResultPage = homePage.searchDocuments(fileName,5);
+				searchResultPage = homePage.searchDocuments(fileName,10);
 				break;
 			} catch (Exception exception) {
 				logger.warn("Search document not found. It seems document has not indexed yet."+ exception.getMessage());
 			}
 		}	
-		
-
-		
+			
 		DocumentDetailsPage openDocumentsDetails = searchResultPage.openDocumentsDetails(fileName);
 		openDocumentsDetails.clickOnDocumentsCommentsTab();
 		DocumentsRightToolBarPage loadRightToolBarPage2 = openDocumentsDetails.loadRightToolBarPage();
 		CreateCommentPage createCommentPage = loadRightToolBarPage2.selectAddCommentCommand();
 		createCommentPage.createComment(fileName, "1", "a", "Content for "+ fileName);
+		
+		new GlobalHomeIcon(driver).clickOnHomeButton();
+		homePage = new HomePage(driver);
+		searchResultPage = homePage.searchDocuments(fileName,10);
+		System.out.println();
 	}
 
 	public static void main(String[] args) throws IOException {

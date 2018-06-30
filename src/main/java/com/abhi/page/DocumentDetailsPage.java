@@ -26,7 +26,7 @@ public class DocumentDetailsPage extends WebPage{
 	public DocumentDetailsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, documentCommentsTab,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(documentCommentsTab,Config.getInstance().getExplicitWait());
 	}
 
 	public DocumentsRightToolBarPage loadRightToolBarPage() {

@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 /**
  * 
@@ -32,7 +31,7 @@ public class SummaryReportPage extends WebPage{
 	public SummaryReportPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, reportItem,Config.getInstance().getTcRALoginWait());
+		waitHelper.waitForElement(reportItem,Config.getInstance().getTcRALoginWait());
 	}
 
 

@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 
 public class ProjectDetailsPage extends WebPage{
@@ -23,11 +22,14 @@ public class ProjectDetailsPage extends WebPage{
 	@FindBy(xpath="//aw-tab-container//aw-tab//li//a[contains(text(),'Details')]")
 	private WebElement projectDetailsTab;
 
+	@FindBy(xpath="//aw-tab-container//aw-tab//li//a[contains(text(),'Documents')]")
+	private WebElement projectDocumentsTab;
+
 	
 	public ProjectDetailsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, projectInformationLabel,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( projectInformationLabel,Config.getInstance().getExplicitWait());
 	}
 
 	public ProjectRightToolBarPage loadRightToolBarPage() {
@@ -39,7 +41,16 @@ public class ProjectDetailsPage extends WebPage{
 		projectDetailsTab.click();	
 	}
 	
+	private void clickOnDocumentsTab() {
+		logger.info("clicking on details tab...");
+		projectDocumentsTab.click();	
+	}
+	
 	public void clickOnProjectDetaileTab() {
 		clickOnDetailsTab();
+	}
+	
+	public void clickOnProjectDocumentsTab() {
+		clickOnDocumentsTab();
 	}
 }

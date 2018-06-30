@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
-import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.ReportFilterPage.ReportType;
 import com.abhi.utility.StaleElementUtils;
@@ -33,7 +32,7 @@ public class MultiProjectRightToolBarPage extends WebPage{
 		PageFactory.initElements(driver, this);
 		try
 		{
-			waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
+			waitHelper.waitForElement(generateReportButton,Config.getInstance().getExplicitWait());
 		}
 		catch(StaleElementReferenceException e )
 		{
@@ -41,7 +40,7 @@ public class MultiProjectRightToolBarPage extends WebPage{
 
 			StaleElementUtils.refreshElement(driver, generateReportButton);
 		}
-		waitHelper.waitForElement(driver, generateReportButton,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(generateReportButton,Config.getInstance().getExplicitWait());
 
 	}
 

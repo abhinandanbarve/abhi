@@ -32,7 +32,7 @@ public class GlobelSearchPage extends WebPage{
 	public GlobelSearchPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, globalSearchButton,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( globalSearchButton,Config.getInstance().getExplicitWait());
 		logger.debug("Loading GlobelSearchPage done ...");
 	}
 

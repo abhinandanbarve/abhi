@@ -30,7 +30,7 @@ public class DocumentsRightToolBarPage extends WebPage{
 
 		super(driver);
 		PageFactory.initElements(driver, this);		
-		waitHelper.waitForElement(driver, createCommentButton,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(createCommentButton,Config.getInstance().getExplicitWait());
 
 	}
 

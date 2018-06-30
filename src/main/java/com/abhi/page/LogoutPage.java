@@ -22,7 +22,7 @@ public class LogoutPage extends WebPage{
 	public LogoutPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, userNameLink,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( userNameLink,Config.getInstance().getExplicitWait());
 	}
 
 	private void clickOnUserNameLink(){

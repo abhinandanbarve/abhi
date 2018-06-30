@@ -25,13 +25,13 @@ public class GlobelSearchResultPage extends WebPage{
 	public GlobelSearchResultPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, selectProject,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( selectProject,Config.getInstance().getExplicitWait());
 	}
 	
 	public GlobelSearchResultPage(WebDriver driver, int seconds) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(driver, selectDocument,seconds);
+		waitHelper.waitForElement( selectDocument,seconds);
 	}
 	
 	private void openProjectDetails(){
