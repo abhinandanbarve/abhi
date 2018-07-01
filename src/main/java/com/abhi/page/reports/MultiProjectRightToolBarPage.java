@@ -12,6 +12,7 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.login.LoginPage;
+import com.abhi.page.reports.ReportFilterPage.ReportType;
 import com.abhi.utility.StaleElementUtils;
 
 public class MultiProjectRightToolBarPage extends WebPage{

@@ -54,27 +54,27 @@ public class HomePage extends WebPage{
 	public HomePage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement(reportsTile,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement(reportsTile,Config.getInstance().getTcRALoginWait());
 	}
 	
 	
-	public SummaryReportPage clickOnSummaryReportsTile(){
-		logger.info("clickin on Reports:");
-		reportsTile.click();
-		return new SummaryReportPage(driver);
-	}
-	
-	
-	public ItemReportPage clickOnGlobalSearchLink(){
-		logger.info("clickin on Reports:");
-		globalSearchLink.click();
-		selectProjectOnSearchMenu.click();
-		globalSearchText.sendKeys("316837");
-		globalSearchButton.click();
-		waitHelper.waitForElement( selectProject,Config.getInstance().getExplicitWait());
-		selectProject.click();
-		return new ItemReportPage(driver);		
-	}
+//	public SummaryReportPage clickOnSummaryReportsTile(){
+//		logger.info("clickin on Reports:");
+//		reportsTile.click();
+//		return new SummaryReportPage(driver);
+//	}
+//	
+//	
+//	public ItemReportPage clickOnGlobalSearchLink(){
+//		logger.info("clickin on Reports:");
+//		globalSearchLink.click();
+//		selectProjectOnSearchMenu.click();
+//		globalSearchText.sendKeys("316837");
+//		globalSearchButton.click();
+//		waitHelper.waitForElement( selectProject,Config.getInstance().getExplicitWait());
+//		selectProject.click();
+//		return new ItemReportPage(driver);		
+//	}
 	
 	public boolean isLoginSucsess(){
 		logger.info("cheking Reports tile present or not");
