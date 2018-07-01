@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.reports;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -17,6 +17,7 @@ import com.abhi.base.Config;
 import com.abhi.helper.GenericHelper;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.helper.VerificationHelper;
+import com.abhi.page.WebPage;
 
 public class ReportFilterPage extends WebPage{
 

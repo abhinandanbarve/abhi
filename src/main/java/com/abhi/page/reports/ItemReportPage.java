@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.reports;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,6 +11,7 @@ import org.testng.annotations.DataProvider;
 
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
+import com.abhi.page.WebPage;
 import com.abhi.utility.StaleElementUtils;
 /**
  * 

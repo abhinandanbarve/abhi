@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 import com.abhi.base.Config;
 import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
-import com.abhi.page.HomePage;
-import com.abhi.page.LoginPage;
-import com.abhi.page.LogoutPage;
+import com.abhi.page.dashboard.HomePage;
+import com.abhi.page.login.LoginPage;
+import com.abhi.page.login.LogoutPage;
 
 /**
  * 

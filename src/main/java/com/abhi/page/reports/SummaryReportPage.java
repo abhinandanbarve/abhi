@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.reports;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
+import com.abhi.page.WebPage;
 /**
  * 
  * @author abhinandan

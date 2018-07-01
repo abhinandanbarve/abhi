@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.documents;
 
 import java.util.List;
 
@@ -12,11 +12,12 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.JavaScriptHelper;
 import com.abhi.helper.LoggerHelper;
+import com.abhi.page.WebPage;
 
-public class AddProjectDocumentPage extends WebPage{
+public class UploadDocumentPage extends WebPage{
 
 
-	private final Logger logger = LoggerHelper.getLogger(AddProjectDocumentPage.class);
+	private final Logger logger = LoggerHelper.getLogger(UploadDocumentPage.class);
 
 	@FindBy(xpath="//dnvgl-file-upload//button[@id= 'inputfileButton' and contains(text(),'Choose Files')]")
 	private WebElement chooseFilesButton;
@@ -29,7 +30,7 @@ public class AddProjectDocumentPage extends WebPage{
 	private WebElement createButton;
 
 
-	public AddProjectDocumentPage(WebDriver driver) {
+	public UploadDocumentPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElementToClick(chooseFilesButton,Config.getInstance().getExplicitWait());

@@ -7,8 +7,8 @@ import com.abhi.helper.WaitHelper;
 public class WebPage {
 
 
-	WebDriver driver;
-	WaitHelper waitHelper;
+	protected WebDriver driver;
+	protected WaitHelper waitHelper;
 
 	public WebPage(WebDriver driver) {
 		this.driver = driver;

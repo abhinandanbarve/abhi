@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.reports;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -10,7 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
-import com.abhi.page.ReportFilterPage.ReportType;
+import com.abhi.page.WebPage;
+import com.abhi.page.login.LoginPage;
 import com.abhi.utility.StaleElementUtils;
 
 public class MultiProjectRightToolBarPage extends WebPage{

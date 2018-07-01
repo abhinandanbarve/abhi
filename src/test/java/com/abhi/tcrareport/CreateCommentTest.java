@@ -9,15 +9,15 @@ import org.testng.annotations.Test;
 
 import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
-import com.abhi.page.AddProjectDocumentPage;
-import com.abhi.page.CreateCommentPage;
-import com.abhi.page.DocumentDetailsPage;
-import com.abhi.page.DocumentsRightToolBarPage;
-import com.abhi.page.GlobalHomeIcon;
-import com.abhi.page.GlobelSearchResultPage;
-import com.abhi.page.HomePage;
-import com.abhi.page.ProjectDetailsPage;
-import com.abhi.page.ProjectRightToolBarPage;
+import com.abhi.page.comments.CreateCommentPage;
+import com.abhi.page.dashboard.HomePage;
+import com.abhi.page.documents.UploadDocumentPage;
+import com.abhi.page.documents.DocumentDetailsPage;
+import com.abhi.page.documents.DocumentsRightToolBarPage;
+import com.abhi.page.globalsearch.GlobalHomeIcon;
+import com.abhi.page.globalsearch.GlobelSearchResultPage;
+import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.project.ProjectRightToolBarPage;
 
 public class CreateCommentTest extends TestBase{
 
@@ -38,7 +38,7 @@ public class CreateCommentTest extends TestBase{
 		openProjectDetails.clickOnProjectDetaileTab();
 		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
 
-		AddProjectDocumentPage addProjectDocumentPage = loadRightToolBarPage.selectAddDocumentCommand();
+		UploadDocumentPage addProjectDocumentPage = loadRightToolBarPage.selectAddDocumentCommand();
 		addProjectDocumentPage.uploadDocument(document.getAbsolutePath());
 
 	 //As Indexing has issues lets search via traversing to Documents folder

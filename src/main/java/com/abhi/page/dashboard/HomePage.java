@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.dashboard;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -9,6 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.helper.VerificationHelper;
+import com.abhi.page.WebPage;
+import com.abhi.page.globalsearch.GlobelSearchPage;
+import com.abhi.page.globalsearch.GlobelSearchResultPage;
+import com.abhi.page.reports.ItemReportPage;
+import com.abhi.page.reports.SummaryReportPage;
 
 /**
  * 

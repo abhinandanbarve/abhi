@@ -5,14 +5,14 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.abhi.base.TestBase;
-import com.abhi.page.GlobalHomeIcon;
-import com.abhi.page.GlobelSearchResultPage;
-import com.abhi.page.HomePage;
-import com.abhi.page.ProjectDetailsPage;
-import com.abhi.page.ProjectReportListPage;
-import com.abhi.page.ProjectRightToolBarPage;
-import com.abhi.page.ReportFilterPage;
-import com.abhi.page.TcRAResultPage;
+import com.abhi.page.dashboard.HomePage;
+import com.abhi.page.globalsearch.GlobalHomeIcon;
+import com.abhi.page.globalsearch.GlobelSearchResultPage;
+import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.project.ProjectRightToolBarPage;
+import com.abhi.page.reports.ProjectReportListPage;
+import com.abhi.page.reports.ReportFilterPage;
+import com.abhi.page.reports.TcRAResultPage;
 
 public class ItemReportTest extends TestBase{
 

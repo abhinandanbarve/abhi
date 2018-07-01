@@ -1,4 +1,4 @@
-package com.abhi.page;
+package com.abhi.page.globalsearch;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
+import com.abhi.page.WebPage;
+import com.abhi.page.documents.DocumentDetailsPage;
+import com.abhi.page.project.ProjectDetailsPage;
 
 public class GlobelSearchResultPage extends WebPage{
 
