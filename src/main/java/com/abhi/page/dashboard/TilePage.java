@@ -10,7 +10,7 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.login.LoginPage;
-import com.abhi.page.project.CreateProjectPage;
+import com.abhi.page.project.create.CreateProjectPage;
 import com.abhi.page.reports.SummaryReportPage;
 
 public class TilePage extends WebPage{

@@ -8,9 +8,9 @@ import com.abhi.base.TestBase;
 import com.abhi.page.dashboard.HomePage;
 import com.abhi.page.globalsearch.GlobalHomeIcon;
 import com.abhi.page.globalsearch.GlobelSearchResultPage;
-import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.project.ProjectOverviewPage;
 import com.abhi.page.project.ProjectRightToolBarPage;
-import com.abhi.page.reports.ProjectReportListPage;
+import com.abhi.page.reports.TcRAReportListPanel;
 import com.abhi.page.reports.ReportFilterPage;
 import com.abhi.page.reports.TcRAResultPage;
 
@@ -28,9 +28,9 @@ public class ItemReportTest extends TestBase{
 
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
-		ProjectDetailsPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
+		ProjectOverviewPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
 		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
-		ProjectReportListPage projectReportListPage = loadRightToolBarPage.selectReportCommand();
+		TcRAReportListPanel projectReportListPage = loadRightToolBarPage.generateReportCommand();
 		ReportFilterPage selectProjectReport = projectReportListPage.selectProjectReport(reportName);
 		TcRAResultPage selectGeneateNow = selectProjectReport.selectGeneateNow();
 		int rowCount = selectGeneateNow.renderReportAndGetRowCount();

@@ -5,11 +5,11 @@ import org.testng.annotations.Test;
 
 import com.abhi.base.TestBase;
 import com.abhi.page.dashboard.HomePage;
-import com.abhi.page.documents.UploadDocumentPage;
 import com.abhi.page.globalsearch.GlobalHomeIcon;
 import com.abhi.page.globalsearch.GlobelSearchResultPage;
-import com.abhi.page.project.ProjectDetailsPage;
-import com.abhi.page.project.ProjectRightToolBarPage;
+import com.abhi.page.panel.UploadDocumentPanel;
+import com.abhi.page.project.ProjectDocumentsPage;
+import com.abhi.page.project.ProjectOverviewPage;
 
 public class DocumentUploadTest extends TestBase{
 
@@ -21,13 +21,10 @@ public class DocumentUploadTest extends TestBase{
 		String strFilePath = "C:\\Abhinandan\\BHLKCL.pdf";
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
-		ProjectDetailsPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
-		openProjectDetails.clickOnProjectDetaileTab();
-		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
-
-		UploadDocumentPage addProjectDocumentPage = loadRightToolBarPage.selectAddDocumentCommand();
-		addProjectDocumentPage.uploadDocument(strFilePath);
-		
+		ProjectOverviewPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
+		ProjectDocumentsPage documentsPage = openProjectDetails.getDocumentsPage();
+		UploadDocumentPanel addDocumentCommand = documentsPage.loadToolBar().getUploadDocumentPanel();		
+		addDocumentCommand.uploadDocument(strFilePath);
 		
 		Assert.assertTrue(true, "Resport is not executed. Please verify..");
 		new GlobalHomeIcon(driver).clickOnHomeButton();

@@ -1,4 +1,4 @@
-package com.abhi.page.project;
+package com.abhi.page.project.create;
 
 public class CreateProjectInput {
 

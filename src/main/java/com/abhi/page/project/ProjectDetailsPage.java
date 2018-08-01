@@ -10,48 +10,29 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 
+import toolbar.ProjectDetailsToolBar;
+
 public class ProjectDetailsPage extends WebPage{
+
 
 	private final Logger logger = LoggerHelper.getLogger(ProjectDetailsPage.class);
 
 	
-	@FindBy(xpath="//label[text()='PROJECT INFORMATION']")
-	private WebElement projectInformationLabel;
+	@FindBy(xpath="//div[@class='aw-layout-workarea']//div[contains(@class,'aw-layout-panelSection') and @caption='ADMINISTRATION' ]")
+	private WebElement administrationSection;
 
-	
-	
-	@FindBy(xpath="//aw-tab-container//aw-tab//li//a[contains(text(),'Details')]")
-	private WebElement projectDetailsTab;
+	@FindBy(xpath="//div[@class='aw-layout-workarea']//div[contains(@class,'aw-layout-panelSection') and @caption='DETAILS']")
+	private WebElement detailsSection;
 
-	@FindBy(xpath="//aw-tab-container//aw-tab//li//a[contains(text(),'Documents')]")
-	private WebElement projectDocumentsTab;
-
-	
 	public ProjectDetailsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
-		waitHelper.waitForElement( projectInformationLabel,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( administrationSection,Config.getInstance().getExplicitWait());
+		waitHelper.waitForElement( detailsSection,Config.getInstance().getExplicitWait());
 	}
 
-	public ProjectRightToolBarPage loadRightToolBarPage() {
-		return new ProjectRightToolBarPage(driver);
-	}
+	public ProjectDetailsToolBar loadToolBar() {
+		return new ProjectDetailsToolBar(driver);
+	}	
 	
-	private void clickOnDetailsTab() {
-		logger.info("clicking on details tab...");
-		projectDetailsTab.click();	
-	}
-	
-	private void clickOnDocumentsTab() {
-		logger.info("clicking on details tab...");
-		projectDocumentsTab.click();	
-	}
-	
-	public void clickOnProjectDetaileTab() {
-		clickOnDetailsTab();
-	}
-	
-	public void clickOnProjectDocumentsTab() {
-		clickOnDocumentsTab();
-	}
 }

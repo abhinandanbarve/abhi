@@ -1,4 +1,4 @@
-package com.abhi.page.documents;
+package com.abhi.page.panel;
 
 import java.util.List;
 
@@ -14,28 +14,38 @@ import com.abhi.helper.JavaScriptHelper;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 
-public class UploadDocumentPage extends WebPage{
+public class UploadDocumentPanel extends WebPage{
 
 
-	private final Logger logger = LoggerHelper.getLogger(UploadDocumentPage.class);
+	private final Logger logger = LoggerHelper.getLogger(UploadDocumentPanel.class);
 
-	@FindBy(xpath="//dnvgl-file-upload//button[@id= 'inputfileButton' and contains(text(),'Choose Files')]")
-	private WebElement chooseFilesButton;
+	@FindBy(xpath="//div[@class='aw-layout-panelMain']//aw-tab//a[text()='Favorites']")
+	private WebElement favoritesPanelTab;
 
 	@FindBy(xpath="//dnvgl-file-upload//input[@type='file' and @id='inputfilehiddenbutton']")
 	private WebElement inputFileType;
 
-
+	
+	@FindBy(xpath="//button[@id='inputfileButton' and text()='Choose Files']")
+	private WebElement chooseFilesButton;
+	
 	@FindBy(xpath="//aw-include[@name='AP4_AddProjectDocument']//button[@action='uploadOKClicked']//aw-i18n[contains(text(),'Create')]")
 	private WebElement createButton;
 
+	
 
-	public UploadDocumentPage(WebDriver driver) {
+	public UploadDocumentPanel(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElementToClick(chooseFilesButton,Config.getInstance().getExplicitWait());
 	}
 
+	public UploadDocumentPanel(WebDriver driver, int timeout) {
+		super(driver);
+		PageFactory.initElements(driver, this);
+		waitHelper.waitForElementToClick(chooseFilesButton,timeout);
+	}
+	
 	private void clickOnCreateButton(){
 		logger.info("clicking on create button...");
 		createButton.click();		

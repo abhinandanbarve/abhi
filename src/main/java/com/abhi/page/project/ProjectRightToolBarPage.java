@@ -11,9 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
-import com.abhi.page.documents.UploadDocumentPage;
 import com.abhi.page.login.LoginPage;
-import com.abhi.page.reports.ProjectReportListPage;
+import com.abhi.page.reports.TcRAReportListPanel;
 import com.abhi.utility.StaleElementUtils;
 
 public class ProjectRightToolBarPage extends WebPage{
@@ -28,10 +27,10 @@ public class ProjectRightToolBarPage extends WebPage{
 	@FindBy(xpath="//aw-command//button[@id='Awp0InContextReports'][@title='Generate Report']")
 	WebElement generateReportButton;
 
-	@FindBy(xpath="//aw-command//button[@id='AP4_AddProjectDocument'][@title='Add Document']")
-	WebElement addDocumentButton;
-
-	
+//	@FindBy(xpath="//aw-command//button[@id='AP4_AddProjectDocument'][@title='Add Document']")
+//	WebElement addDocumentButton;
+//	
+//	 
 	public ProjectRightToolBarPage(WebDriver driver) 	{
 
 		super(driver);
@@ -56,31 +55,31 @@ public class ProjectRightToolBarPage extends WebPage{
 
 	}
 
-	private void clickOnAddDocumentButton(){
-		logger.info("clicking on add document button...");
-		this.addDocumentButton.click();
-
-	}
+//	private void clickOnAddDocumentButton(){
+//		logger.info("clicking on add document button...");
+//		this.addDocumentButton.click();
+//
+//	}
 	
-	public UploadDocumentPage selectAddDocumentCommand(){
-		clickOnAddDocumentButton();
-		return new UploadDocumentPage(driver);
-	}
+//	public UploadDocumentPanel selectAddDocumentCommand(){
+//		clickOnAddDocumentButton();
+//		return new UploadDocumentPanel(driver);
+//	}
 	
 	
-	public ProjectReportListPage selectReportCommand(){		
+	public TcRAReportListPanel generateReportCommand(){		
 		
 		try
 		{
 			clickOnGenerateReportButton();
-			new ProjectReportListPage(driver, 1);
+			new TcRAReportListPanel(driver, 1);
 		}
 		catch(Exception exception)
 		{
 			clickOnGenerateReportButton();
 		}	
 		
-		return new ProjectReportListPage(driver);
+		return new TcRAReportListPanel(driver);
 	}
 
 

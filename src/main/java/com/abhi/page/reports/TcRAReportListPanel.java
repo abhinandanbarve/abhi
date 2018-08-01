@@ -11,21 +11,21 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 
-public class ProjectReportListPage extends WebPage {
+public class TcRAReportListPanel extends WebPage {
 
-	private final Logger logger = LoggerHelper.getLogger(ProjectReportListPage.class);
+	private final Logger logger = LoggerHelper.getLogger(TcRAReportListPanel.class);
 
 	@FindBy(xpath="//form[@panel-id='Awp0InContextReportsList']//ul/li")
 	private WebElement reportList;
 	
 
-	public ProjectReportListPage(WebDriver driver) {
+	public TcRAReportListPanel(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement(reportList,Config.getInstance().getExplicitWait());
 	}
 
-	public ProjectReportListPage(WebDriver driver, int waitTime) {
+	public TcRAReportListPanel(WebDriver driver, int waitTime) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement(reportList,waitTime);

@@ -11,19 +11,22 @@ import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.comments.CreateCommentPage;
 import com.abhi.page.dashboard.HomePage;
-import com.abhi.page.documents.UploadDocumentPage;
 import com.abhi.page.documents.DocumentDetailsPage;
 import com.abhi.page.documents.DocumentsRightToolBarPage;
 import com.abhi.page.globalsearch.GlobalHomeIcon;
 import com.abhi.page.globalsearch.GlobelSearchResultPage;
-import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.panel.UploadDocumentPanel;
+import com.abhi.page.project.ProjectDocumentsPage;
+import com.abhi.page.project.ProjectOverviewPage;
 import com.abhi.page.project.ProjectRightToolBarPage;
+
+import toolbar.ProjectDocumentsToolBar;
 
 public class CreateCommentTest extends TestBase{
 
 	private final Logger logger = LoggerHelper.getLogger(CreateCommentTest.class);
 
-	
+
 	@Test
 	public void documentUploadTest() {
 
@@ -34,14 +37,13 @@ public class CreateCommentTest extends TestBase{
 
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
-		ProjectDetailsPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
-		openProjectDetails.clickOnProjectDetaileTab();
-		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
-
-		UploadDocumentPage addProjectDocumentPage = loadRightToolBarPage.selectAddDocumentCommand();
+		ProjectOverviewPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
+		ProjectDocumentsPage documentsPage = openProjectDetails.getDocumentsPage();
+		ProjectDocumentsToolBar loadToolBar = documentsPage.loadToolBar();
+		UploadDocumentPanel addProjectDocumentPage = loadToolBar.getUploadDocumentPanel();
 		addProjectDocumentPage.uploadDocument(document.getAbsolutePath());
 
-	 //As Indexing has issues lets search via traversing to Documents folder
+		//As Indexing has issues lets search via traversing to Documents folder
 		for (int i = 0; i < 6; i++) {
 			try {
 				new GlobalHomeIcon(driver).clickOnHomeButton();
@@ -52,13 +54,13 @@ public class CreateCommentTest extends TestBase{
 				logger.warn("Search document not found. It seems document has not indexed yet."+ exception.getMessage());
 			}
 		}	
-			
+
 		DocumentDetailsPage openDocumentsDetails = searchResultPage.openDocumentsDetails(fileName);
 		openDocumentsDetails.clickOnDocumentsCommentsTab();
 		DocumentsRightToolBarPage loadRightToolBarPage2 = openDocumentsDetails.loadRightToolBarPage();
 		CreateCommentPage createCommentPage = loadRightToolBarPage2.selectAddCommentCommand();
 		createCommentPage.createComment(fileName, "1", "a", "Content for "+ fileName);
-		
+
 		new GlobalHomeIcon(driver).clickOnHomeButton();
 		homePage = new HomePage(driver);
 		searchResultPage = homePage.searchDocuments(fileName,10);

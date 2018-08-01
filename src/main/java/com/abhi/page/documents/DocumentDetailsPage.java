@@ -9,11 +9,11 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
-import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.project.ProjectOverviewPage;
 
 public class DocumentDetailsPage extends WebPage{
 
-	private final Logger logger = LoggerHelper.getLogger(ProjectDetailsPage.class);
+	private final Logger logger = LoggerHelper.getLogger(ProjectOverviewPage.class);
 
 	
 	@FindBy(xpath="//label[text()='PROJECT INFORMATION']")

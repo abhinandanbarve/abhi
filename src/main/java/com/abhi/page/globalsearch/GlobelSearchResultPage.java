@@ -10,7 +10,7 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.documents.DocumentDetailsPage;
-import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.project.ProjectOverviewPage;
 
 public class GlobelSearchResultPage extends WebPage{
 
@@ -47,9 +47,9 @@ public class GlobelSearchResultPage extends WebPage{
 		this.selectDocument.click();
 	}
 
-	public ProjectDetailsPage openProjectDetails(String searchValue){		
+	public ProjectOverviewPage openProjectDetails(String searchValue){		
 		openProjectDetails();
-		return new ProjectDetailsPage(driver);
+		return new ProjectOverviewPage(driver);
 	}
 
 	public DocumentDetailsPage openDocumentsDetails(String searchValue){		

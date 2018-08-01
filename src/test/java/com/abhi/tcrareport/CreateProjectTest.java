@@ -11,10 +11,10 @@ import com.abhi.page.dashboard.HomePage;
 import com.abhi.page.dashboard.TilePage;
 import com.abhi.page.globalsearch.GlobalHomeIcon;
 import com.abhi.page.globalsearch.GlobelSearchResultPage;
-import com.abhi.page.project.CreateProjectDetailsPage;
-import com.abhi.page.project.CreateProjectInput;
-import com.abhi.page.project.CreateProjectPage;
-import com.abhi.page.project.ProjectDetailsPage;
+import com.abhi.page.project.ProjectOverviewPage;
+import com.abhi.page.project.create.CreateProjectDetailsPage;
+import com.abhi.page.project.create.CreateProjectInput;
+import com.abhi.page.project.create.CreateProjectPage;
 
 public class CreateProjectTest extends TestBase{
 
@@ -42,7 +42,7 @@ public class CreateProjectTest extends TestBase{
 		new GlobalHomeIcon(driver).clickOnHomeButton();
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchProject = homePage.searchProject(projectValue);
-		ProjectDetailsPage openProjectDetails = searchProject.openProjectDetails(projectValue);
+		ProjectOverviewPage openProjectDetails = searchProject.openProjectDetails(projectValue);
 		
 		System.out.println();
 	}
