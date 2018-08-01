@@ -1,4 +1,4 @@
-package com.abhi.tcrareport;
+package com.abhi.test;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;

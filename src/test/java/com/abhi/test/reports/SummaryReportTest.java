@@ -1,4 +1,4 @@
-package com.abhi.tcrareport;
+package com.abhi.test.reports;
 
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;

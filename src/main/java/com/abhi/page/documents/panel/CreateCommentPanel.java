@@ -23,13 +23,7 @@ public class CreateCommentPanel extends WebPage{
 
 	private final Logger logger = LoggerHelper.getLogger(CreateCommentPanel.class);
 
-
-	//aw-radiobutton
-	//aw-checkbox
-
 	//$x("//aw-include[@name='AP4_CreateComment']//div[contains(@class,'aw-widgets-propertyContainer')]//aw-property-label//div[contains(text(),'Title:')]/ancestor::div[2]//input[@type='text']")
-
-
 	@FindBy(xpath="//aw-include[@name='AP4_CreateComment']//div[contains(@class,'aw-widgets-propertyContainer')]//aw-property-label//div[contains(text(),'Title:')]/ancestor::div[2]//input[@type='text']")
 	private WebElement commentTitleText;
 
@@ -76,7 +70,7 @@ public class CreateCommentPanel extends WebPage{
 		for(int i=0; i < 4; i++)
 		{
 			try {
-				
+
 				JavaScriptHelper javaScriptHelper = new JavaScriptHelper(driver);
 				String script = "document.getElementsByClassName('cke_wysiwyg_frame cke_reset').contentWindow.document.body.innerHTML = '"+content+"'";
 
@@ -130,7 +124,7 @@ public class CreateCommentPanel extends WebPage{
 	private void clearNotifications() {
 		boolean isAlertVisible = true;
 		int counter = 11;
-		
+
 		try {
 			waitHelper.waitForElementToPresence(By.xpath("//ul[@id='noty_bottom_layout_container']//span[@class='noty_text' and contains(text(),'Comment created successfully.')]"), Config.getInstance().getExplicitWait());
 		} catch (Exception e) {
@@ -140,11 +134,11 @@ public class CreateCommentPanel extends WebPage{
 		while(isAlertVisible || counter == 10) {
 			List<WebElement> findElements = null;
 			try {	
-				
+
 				findElements = driver.findElements(By.xpath("//ul[@id='noty_bottom_layout_container']//div[contains(@class,'noty_close')]"));
 
 				for (WebElement webElement : findElements) {
-					
+
 					try {
 						webElement.click();	
 						webElement.click();	
@@ -152,7 +146,7 @@ public class CreateCommentPanel extends WebPage{
 						e.printStackTrace();
 					}
 				}
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -160,7 +154,7 @@ public class CreateCommentPanel extends WebPage{
 				isAlertVisible = false;
 			counter++;
 		}
-		
+
 	}
 
 
