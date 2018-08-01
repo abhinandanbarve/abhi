@@ -1,4 +1,4 @@
-package toolbar;
+package com.abhi.page.toolbar;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.StaleElementReferenceException;

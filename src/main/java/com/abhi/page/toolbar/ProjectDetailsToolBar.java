@@ -1,4 +1,4 @@
-package toolbar;
+package com.abhi.page.toolbar;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -12,15 +12,20 @@ import com.abhi.helper.LoggerHelper;
 import com.abhi.page.panel.UploadTransmittalPanel;
 import com.abhi.utility.StaleElementUtils;
 
-public class ProjectOverviewToolBar extends ProjectToolBar{
+public class ProjectDetailsToolBar extends ProjectToolBar{
 
-	private final Logger logger = LoggerHelper.getLogger(ProjectOverviewToolBar.class);
-	
+
+	private final Logger logger = LoggerHelper.getLogger(ProjectDetailsToolBar.class);
+
+
+	@FindBy(xpath="//aw-command//button[@id='AP4_AddProjectDocument'][@title='Add Document']")
+	WebElement addDocumentButton;
+
 	
 	@FindBy(xpath="//aw-command//button[@id='AP4_UploadBatchDocuments'][@title='Upload Transmittal']")
 	WebElement uploadTransmittal;
-	
-	public ProjectOverviewToolBar(WebDriver driver) 	{
+
+	public ProjectDetailsToolBar(WebDriver driver) 	{
 
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -40,9 +45,9 @@ public class ProjectOverviewToolBar extends ProjectToolBar{
 		this.uploadTransmittal.click();
 
 	}
-	
+
 	public UploadTransmittalPanel getUploadTransmittalPanel(){		
-		
+
 		try
 		{
 			clickOnUploadTransmittalButton();
@@ -52,7 +57,7 @@ public class ProjectOverviewToolBar extends ProjectToolBar{
 		{
 			clickOnUploadTransmittalButton();
 		}	
-		
+
 		return new UploadTransmittalPanel(driver);
 	}
 

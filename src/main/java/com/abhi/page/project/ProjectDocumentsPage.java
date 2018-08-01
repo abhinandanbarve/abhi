@@ -11,9 +11,8 @@ import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.documents.AdminDocumentsPage;
 import com.abhi.page.documents.ReceivedDocumentsPage;
-
-import toolbar.ProjectDetailsToolBar;
-import toolbar.ProjectDocumentsToolBar;
+import com.abhi.page.toolbar.ProjectDetailsToolBar;
+import com.abhi.page.toolbar.ProjectDocumentsToolBar;
 
 public class ProjectDocumentsPage extends WebPage{
 

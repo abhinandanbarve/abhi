@@ -19,8 +19,7 @@ import com.abhi.page.panel.UploadDocumentPanel;
 import com.abhi.page.project.ProjectDocumentsPage;
 import com.abhi.page.project.ProjectOverviewPage;
 import com.abhi.page.project.ProjectRightToolBarPage;
-
-import toolbar.ProjectDocumentsToolBar;
+import com.abhi.page.toolbar.ProjectDocumentsToolBar;
 
 public class CreateCommentTest extends TestBase{
 

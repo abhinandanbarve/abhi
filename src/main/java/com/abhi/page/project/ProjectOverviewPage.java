@@ -9,9 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
-
-import toolbar.ProjectDetailsToolBar;
-import toolbar.ProjectOverviewToolBar;
+import com.abhi.page.toolbar.ProjectDetailsToolBar;
+import com.abhi.page.toolbar.ProjectOverviewToolBar;
 
 public class ProjectOverviewPage extends WebPage{
 
