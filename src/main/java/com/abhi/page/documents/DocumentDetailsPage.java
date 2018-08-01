@@ -10,6 +10,7 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.project.ProjectOverviewPage;
+import com.abhi.page.toolbar.DocumentDetailsToolBar;
 
 public class DocumentDetailsPage extends WebPage{
 
@@ -31,8 +32,8 @@ public class DocumentDetailsPage extends WebPage{
 		waitHelper.waitForElement(documentCommentsTab,Config.getInstance().getExplicitWait());
 	}
 
-	public DocumentsRightToolBarPage loadRightToolBarPage() {
-		return new DocumentsRightToolBarPage(driver);
+	public DocumentDetailsToolBar loadRightToolBarPage() {
+		return new DocumentDetailsToolBar(driver);
 	}
 	
 	private void clickOnCommentsTab() {

@@ -27,8 +27,6 @@ public class ProjectCustomerPage extends WebPage{
 
 	@FindBy(xpath="//div[@class='aw-layout-workarea']//div[contains(@class,'aw-layout-panelSection') and @caption='Frame Agreement']")
 	private WebElement frameAgreementSection;
-
-	
 	
 
 	public ProjectCustomerPage(WebDriver driver) {
@@ -38,12 +36,13 @@ public class ProjectCustomerPage extends WebPage{
 		waitHelper.waitForElement( frameAgreementSection,Config.getInstance().getExplicitWait());
 	}
 
+	
 	private void clickOnSearchCustomerIcon(){
 		logger.info("clicking on Search Customer icon...");
 		customerSearchButton.click();		
 	}
 
-	public AssignCustomerPanel getAssignCustomerPanel(){		
+	public AssignCustomerPanel loadAssignCustomerPanel(){		
 		clickOnSearchCustomerIcon();
 		return new AssignCustomerPanel(driver);
 	}

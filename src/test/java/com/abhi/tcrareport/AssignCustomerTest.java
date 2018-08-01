@@ -15,9 +15,9 @@ public class AssignCustomerTest extends TestBase{
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
 		ProjectOverviewPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
-		ProjectCustomerPage clickOnProjectCustomerDetailsTab = openProjectDetails.getCustomerDetailsPage();
+		ProjectCustomerPage projectCustomerPage = openProjectDetails.getCustomerDetailsPage();
 		
-		AssignCustomerPanel assignCustomerPanel = clickOnProjectCustomerDetailsTab.getAssignCustomerPanel();
+		AssignCustomerPanel assignCustomerPanel = projectCustomerPage.loadAssignCustomerPanel();
 		
 		assignCustomerPanel.assignCustomer(customerName);
 		new GlobalHomeIcon(driver).clickOnHomeButton();

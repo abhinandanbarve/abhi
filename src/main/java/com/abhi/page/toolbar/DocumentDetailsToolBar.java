@@ -1,4 +1,4 @@
-package com.abhi.page.documents;
+package com.abhi.page.toolbar;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -10,12 +10,11 @@ import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.comments.CreateCommentPage;
-import com.abhi.page.login.LoginPage;
 
-public class DocumentsRightToolBarPage extends WebPage{
+public class DocumentDetailsToolBar extends WebPage{
 
 
-	private final Logger logger = LoggerHelper.getLogger(LoginPage.class);
+	private final Logger logger = LoggerHelper.getLogger(DocumentDetailsToolBar.class);
 
 	
 	//String generateReportBtnPath = "//button[@id='cmdFilterPanelDui'][@title='Generate Report']";
@@ -29,7 +28,7 @@ public class DocumentsRightToolBarPage extends WebPage{
 	WebElement createCommentButton;
 
 	
-	public DocumentsRightToolBarPage(WebDriver driver) 	{
+	public DocumentDetailsToolBar(WebDriver driver) 	{
 
 		super(driver);
 		PageFactory.initElements(driver, this);		
