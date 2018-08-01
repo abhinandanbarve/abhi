@@ -1,4 +1,4 @@
-package com.abhi.page.toolbar;
+package com.abhi.page.documents.toolbar;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
-import com.abhi.page.comments.CreateCommentPage;
+import com.abhi.page.documents.panel.CreateCommentPanel;
 
 public class DocumentDetailsToolBar extends WebPage{
 
@@ -48,9 +48,9 @@ public class DocumentDetailsToolBar extends WebPage{
 
 	}
 	
-	public CreateCommentPage selectAddCommentCommand(){
+	public CreateCommentPanel getCreateCommentPanel(){
 		clickOnCreateCommentButton();
-		return new CreateCommentPage(driver);
+		return new CreateCommentPanel(driver);
 	}
 	
 	

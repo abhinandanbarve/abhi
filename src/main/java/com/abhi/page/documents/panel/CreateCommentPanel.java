@@ -1,4 +1,4 @@
-package com.abhi.page.comments;
+package com.abhi.page.documents.panel;
 
 import java.util.List;
 
@@ -18,10 +18,10 @@ import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 
 @SuppressWarnings("unused")
-public class CreateCommentPage extends WebPage{
+public class CreateCommentPanel extends WebPage{
 
 
-	private final Logger logger = LoggerHelper.getLogger(CreateCommentPage.class);
+	private final Logger logger = LoggerHelper.getLogger(CreateCommentPanel.class);
 
 
 	//aw-radiobutton
@@ -47,7 +47,7 @@ public class CreateCommentPage extends WebPage{
 
 
 
-	public CreateCommentPage(WebDriver driver) {
+	public CreateCommentPanel(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement(commentTitleText,Config.getInstance().getExplicitWait());

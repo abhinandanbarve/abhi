@@ -9,16 +9,16 @@ import org.testng.annotations.Test;
 
 import com.abhi.base.TestBase;
 import com.abhi.helper.LoggerHelper;
-import com.abhi.page.comments.CreateCommentPage;
 import com.abhi.page.dashboard.HomePage;
 import com.abhi.page.documents.DocumentDetailsPage;
+import com.abhi.page.documents.panel.CreateCommentPanel;
+import com.abhi.page.documents.toolbar.DocumentDetailsToolBar;
 import com.abhi.page.globalsearch.GlobalHomeIcon;
 import com.abhi.page.globalsearch.GlobelSearchResultPage;
 import com.abhi.page.panel.UploadDocumentPanel;
 import com.abhi.page.project.ProjectDocumentsPage;
 import com.abhi.page.project.ProjectOverviewPage;
 import com.abhi.page.project.ProjectRightToolBarPage;
-import com.abhi.page.toolbar.DocumentDetailsToolBar;
 import com.abhi.page.toolbar.ProjectDocumentsToolBar;
 
 public class CreateCommentTest extends TestBase{
@@ -57,7 +57,7 @@ public class CreateCommentTest extends TestBase{
 		DocumentDetailsPage openDocumentsDetails = searchResultPage.openDocumentsDetails(fileName);
 		openDocumentsDetails.clickOnDocumentsCommentsTab();
 		DocumentDetailsToolBar loadRightToolBarPage2 = openDocumentsDetails.loadRightToolBarPage();
-		CreateCommentPage createCommentPage = loadRightToolBarPage2.selectAddCommentCommand();
+		CreateCommentPanel createCommentPage = loadRightToolBarPage2.getCreateCommentPanel();
 		createCommentPage.createComment(fileName, "1", "a", "Content for "+ fileName);
 
 		new GlobalHomeIcon(driver).clickOnHomeButton();

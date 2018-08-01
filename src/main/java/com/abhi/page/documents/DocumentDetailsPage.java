@@ -9,8 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import com.abhi.base.Config;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
+import com.abhi.page.documents.toolbar.DocumentDetailsToolBar;
 import com.abhi.page.project.ProjectOverviewPage;
-import com.abhi.page.toolbar.DocumentDetailsToolBar;
 
 public class DocumentDetailsPage extends WebPage{
 
