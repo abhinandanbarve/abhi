@@ -12,10 +12,10 @@ import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.panel.AssignCustomerPanel;
 
-public class ProjectCustomerDetailsPage extends WebPage{
+public class ProjectCustomerPage extends WebPage{
 
 
-	private final Logger logger = LoggerHelper.getLogger(ProjectCustomerDetailsPage.class);
+	private final Logger logger = LoggerHelper.getLogger(ProjectCustomerPage.class);
 
 	@FindBy(xpath="//button[@id ='AP4_CustomerSearch']")
 	private WebElement customerSearchButton;
@@ -31,7 +31,7 @@ public class ProjectCustomerDetailsPage extends WebPage{
 	
 	
 
-	public ProjectCustomerDetailsPage(WebDriver driver) {
+	public ProjectCustomerPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement( customerSection,Config.getInstance().getExplicitWait());

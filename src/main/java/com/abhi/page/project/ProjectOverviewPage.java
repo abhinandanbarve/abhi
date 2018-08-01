@@ -38,10 +38,7 @@ public class ProjectOverviewPage extends WebPage{
 		PageFactory.initElements(driver, this);
 		waitHelper.waitForElement( projectInformationLabel,Config.getInstance().getExplicitWait());
 	}
-
-	public ProjectRightToolBarPage loadRightToolBarPage() {
-		return new ProjectRightToolBarPage(driver);
-	}
+	
 	
 	public ProjectOverviewToolBar loadToolBar() {
 		return new ProjectOverviewToolBar(driver);
@@ -72,9 +69,9 @@ public class ProjectOverviewPage extends WebPage{
 		clickOnDocumentsTab();
 	}
 	
-	public ProjectCustomerDetailsPage getCustomerDetailsPage() {
+	public ProjectCustomerPage getCustomerDetailsPage() {
 		clickOnCustomerDetailsTab();
-		return new ProjectCustomerDetailsPage(driver);
+		return new ProjectCustomerPage(driver);
 	}
 	
 	public ProjectDetailsPage getProjectDetailsPage() {

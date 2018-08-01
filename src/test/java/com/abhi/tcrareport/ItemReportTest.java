@@ -9,10 +9,10 @@ import com.abhi.page.dashboard.HomePage;
 import com.abhi.page.globalsearch.GlobalHomeIcon;
 import com.abhi.page.globalsearch.GlobelSearchResultPage;
 import com.abhi.page.project.ProjectOverviewPage;
-import com.abhi.page.project.ProjectRightToolBarPage;
-import com.abhi.page.reports.TcRAReportListPanel;
 import com.abhi.page.reports.ReportFilterPage;
+import com.abhi.page.reports.TcRAReportListPanel;
 import com.abhi.page.reports.TcRAResultPage;
+import com.abhi.page.toolbar.ProjectOverviewToolBar;
 
 public class ItemReportTest extends TestBase{
 
@@ -29,8 +29,8 @@ public class ItemReportTest extends TestBase{
 		HomePage homePage = new HomePage(driver);
 		GlobelSearchResultPage searchResultPage = homePage.searchProject(projectValue);
 		ProjectOverviewPage openProjectDetails = searchResultPage.openProjectDetails(projectValue);
-		ProjectRightToolBarPage loadRightToolBarPage = openProjectDetails.loadRightToolBarPage();
-		TcRAReportListPanel projectReportListPage = loadRightToolBarPage.generateReportCommand();
+		ProjectOverviewToolBar loadToolBar = openProjectDetails.loadToolBar();
+		TcRAReportListPanel projectReportListPage = loadToolBar.getTcRAReportListPanel();
 		ReportFilterPage selectProjectReport = projectReportListPage.selectProjectReport(reportName);
 		TcRAResultPage selectGeneateNow = selectProjectReport.selectGeneateNow();
 		int rowCount = selectGeneateNow.renderReportAndGetRowCount();
@@ -44,6 +44,6 @@ public class ItemReportTest extends TestBase{
 		Assert.assertTrue(rowCount >= minExpectedRowCount, "Resport is not executed. Please verify..");
 
 		new GlobalHomeIcon(driver).clickOnHomeButton();
-		
+
 	}
 }
