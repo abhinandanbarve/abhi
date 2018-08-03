@@ -37,9 +37,6 @@ public class AddMDRPanel extends WebPage{
 	@FindBy(xpath="//div[@class='aw-layout-panelMain']//div[contains(@class,'aw-layout-panelFooter')]//button[not(contains(@class,'hidden'))]")
 	private WebElement addButton;
 
-
-	private WebElement resultElement;
-
 	public AddMDRPanel(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -56,21 +53,33 @@ public class AddMDRPanel extends WebPage{
 
 	private void setMDRFile(String mdrFile){
 		logger.info("entering mdr File...."+mdrFile);
+		waitHelper.waitForElementToClick(addButton, 5);
 		this.mdrFile.sendKeys(mdrFile);
 	}
 
 
 	private void clickOnAddButton(){
-		logger.info("clicking on add button...");		
+		logger.info("clicking on add button...");
+		waitHelper.waitForElementToClick(addButton, 5);
 		addButton.click();		
 	}
 
-	
-
 	public void uploadMDRFile(String mdrFile){
-		setMDRFile(mdrFile);
-		clickOnAddButton();
+		
+		
+		for(int i=0; i < 4; i++)
+		{
+			try {
+				setMDRFile(mdrFile);
+				waitHelper.waitForSeaconds(2);
+				clickOnAddButton();
+				break;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		handleNotifications();
+		waitHelper.waitForSeaconds(1);
 	}
 
 	public void handleNotifications(){			

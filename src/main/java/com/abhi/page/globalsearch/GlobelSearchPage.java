@@ -14,7 +14,7 @@ public class GlobelSearchPage extends WebPage{
 
 	private final Logger logger = LoggerHelper.getLogger(GlobelSearchPage.class);
 
-	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//a[contains(text(),'Category:')]")
+	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//a[contains(text(),'Category')]")
 	private WebElement globalSearchLink;
 
 	@FindBy(xpath="//aw-search-global//aw-link-with-popup-menu//ul/li[contains(text(),'Projects/Opportunities')]")

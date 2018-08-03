@@ -18,7 +18,6 @@ import com.abhi.page.globalsearch.GlobelSearchResultPage;
 import com.abhi.page.panel.UploadDocumentPanel;
 import com.abhi.page.project.ProjectDocumentsPage;
 import com.abhi.page.project.ProjectOverviewPage;
-import com.abhi.page.project.ProjectRightToolBarPage;
 import com.abhi.page.toolbar.ProjectDocumentsToolBar;
 
 public class CreateCommentTest extends TestBase{

@@ -12,6 +12,7 @@ import com.abhi.page.WebPage;
 import com.abhi.page.login.LoginPage;
 import com.abhi.page.project.create.CreateProjectPage;
 import com.abhi.page.reports.SummaryReportPage;
+import com.abhi.page.task.MyTaskPage;
 
 public class TilePage extends WebPage{
 
@@ -23,6 +24,10 @@ public class TilePage extends WebPage{
 	
 	@FindBy(xpath="//div[contains(text(),'Create Project')]")
 	private WebElement createProjectTile;
+	
+	@FindBy(xpath="//div[contains(text(),'My Tasks')]")
+	private WebElement myTasksTile;
+	
 	
 	public TilePage(WebDriver driver) {
 		super(driver);
@@ -48,5 +53,15 @@ public class TilePage extends WebPage{
 	public CreateProjectPage selectCreateProjectTile(){		
 		clickOnCreateProjectTile();
 		return new CreateProjectPage(driver);
+	}
+	
+	private void clickOnMyTasksTile(){
+		logger.info("clicking on report tile...");
+		reportsTile.click();		
+	}
+
+	public MyTaskPage selectMyTasksTile(){		
+		clickOnMyTasksTile();
+		return new MyTaskPage(driver);
 	}
 }

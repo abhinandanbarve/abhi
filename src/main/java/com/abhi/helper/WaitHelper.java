@@ -95,4 +95,14 @@ public class WaitHelper {
 
 		}
 	}	
+	
+	public void waitForSeaconds(int seconds) {
+
+		try {
+			Thread.sleep(seconds*1000);
+		} catch (Exception exception) {	
+			Log.error("Exception.Thread.sleep" + exception);			
+
+		}
+	}	
 }

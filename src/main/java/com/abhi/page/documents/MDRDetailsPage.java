@@ -10,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import com.abhi.base.Config;
+import com.abhi.helper.GenericHelper;
 import com.abhi.helper.LoggerHelper;
 import com.abhi.page.WebPage;
 import com.abhi.page.panel.AddMDRPanel;
@@ -37,7 +38,14 @@ public class MDRDetailsPage extends WebPage{
 	@FindBy(xpath="//aw-command//button[@id='AP4_EditMDR']")
 	private WebElement editMDRButton;
 
-
+	@FindBy(xpath="//aw-command//button[@id='AP4_UploadMDR']")
+	private WebElement uploadMDRButton;
+	
+	//$x("//div[@class='noty_buttons']//button[text()='Yes']")
+	@FindBy(xpath="//div[@class='noty_buttons']//button[text()='Yes']")
+	private WebElement importMDRConfirmationButton;
+	
+	
 	public MDRDetailsPage(WebDriver driver) {
 		super(driver);
 		PageFactory.initElements(driver, this);
@@ -45,42 +53,75 @@ public class MDRDetailsPage extends WebPage{
 	}
 
 	private void selectMDRRevision() {
-
+		
 		logger.info("clicking on mdr Revision...");
+		waitHelper.waitForElementToClick(mdrRevision, Config.getInstance().getExplicitWait());
 		mdrRevision.click();
 	}
 
 	private void cutMDRRevision() {
 
 		logger.info("clicking on cut MDRButton button...");
+		waitHelper.waitForElementToClick(cutMDRButton, Config.getInstance().getExplicitWait());
 		cutMDRButton.click();
 	}
 
 	private void clickOnAddMDRRevisionIcon() {
 
 		logger.info("clicking on add MDRButton button...");
+		waitHelper.waitForElementToClick(addMDRButton, Config.getInstance().getExplicitWait());
 		addMDRButton.click();
+	}
+	
+	private void clickOnUploadMDRRevisionIcon() {
+
+		logger.info("clicking on upload MDRButton button...");
+		waitHelper.waitForElementToClick(uploadMDRButton, Config.getInstance().getExplicitWait());
+		uploadMDRButton.click();
 	}
 
 	private void clickOnEditMDRRevisionIcon() {
 
 		logger.info("clicking on edit MDRButton button...");
+		waitHelper.waitForElementToClick(editMDRButton, Config.getInstance().getExplicitWait());
 		editMDRButton.click();
 	}
+	
+	private void clickOnImportMDRConfirmationButton() {
 
-	public void removeExistingMDRTemplate() {
-
-		selectMDRRevision();
-		cutMDRRevision();
-		clickOnAddMDRRevisionIcon();		
+		logger.info("clicking on edit MDRButton button...");
+		waitHelper.waitForElementToClick(importMDRConfirmationButton, Config.getInstance().getExplicitWait());
+		importMDRConfirmationButton.click();
 	}
 	
-	public void updateMDRTemplate(String mdrFile) {
+	public void removeExistingMDRTemplate() {
+			
+		if(new GenericHelper().isDisplayed(mdrRevision))
+		{
+			selectMDRRevision();
+			waitHelper.waitForSeaconds(1);
+			cutMDRRevision();
+			waitHelper.waitForSeaconds(1);
+			handleNotifications();
+			waitHelper.waitForSeaconds(1);
+		}
+		
+		clickOnAddMDRRevisionIcon();	
+	}
 
+	public void updateMDRTemplate(String mdrFile) {
+		waitHelper.waitForSeaconds(1);
 		new AddMDRPanel(driver).uploadMDRFile(mdrFile);
+		waitHelper.waitForSeaconds(1);
 		selectMDRRevision();
-		clickOnEditMDRRevisionIcon();
+		waitHelper.waitForSeaconds(1);
+		clickOnUploadMDRRevisionIcon();
+		waitHelper.waitForSeaconds(1);
+		PageFactory.initElements(driver, this);
+		clickOnImportMDRConfirmationButton();
+		waitHelper.waitForSeaconds(1);
 		handleNotifications();
+		waitHelper.waitForSeaconds(1);
 	}
 
 	public void handleNotifications(){			
